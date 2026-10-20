@@ -3,9 +3,13 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "SK Media",
-  "orientation": "any",
+  "orientation": "portrait",
   "scope": "/",
   "short_name": "SK Media",
   "start_url": "/",
-  "theme_color": "#081426"
+  "theme_color": "#081426",
+  "lang": "sk",
+  "categories": [
+    "multimedia"
+  ]
 }
