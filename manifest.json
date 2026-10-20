@@ -1,0 +1,11 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "SK Media",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "SK Media",
+  "start_url": "/",
+  "theme_color": "#081426"
+}
