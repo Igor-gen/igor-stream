@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="sk">
 <head>
@@ -9,10 +8,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SK Media">
-<title>SK Media • Rádio & TV</title>
+<title>SK Rádiá</title>
 <style>
 :root{color-scheme:dark;--bg:#07111f;--panel:#101e30;--panel2:#15263a;--line:#263950;--text:#eef6ff;--muted:#9db0c6;--cyan:#34d8e8;--green:#5ee0a0;--red:#ff8d9b}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:14px;background:var(--panel2);color:var(--text);padding:12px 14px;font-weight:650}button:active{transform:scale(.985)}button.primary{background:var(--cyan);border-color:var(--cyan);color:#04111e}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:760px;margin:auto;padding:16px;display:flex;flex-direction:column;gap:14px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#1a617b,#35dbe8);font-size:23px;color:#06121d}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:800}.brand h1{font-size:20px;line-height:1.15;margin:3px 0 0}.status{font-size:12px;color:var(--muted);text-align:right;max-width:42%}.screen{border:1px solid var(--line);border-radius:24px;padding:20px;background:radial-gradient(ellipse at 50% 0%,#153d5a 0,#10233a 45%,#0b1728 100%);min-height:190px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;box-shadow:0 14px 38px #0003}.screenhead{display:flex;justify-content:space-between;gap:12px;align-items:center}.pill{border:1px solid #3c6073;border-radius:99px;padding:5px 9px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.8px}.live{font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px}.now{min-width:0}.now small{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.now h2{font-size:clamp(22px,6vw,34px);line-height:1.08;overflow-wrap:anywhere;margin:0 0 8px}.now p{font-size:13px;color:var(--muted);margin:0}.bars{height:28px;display:flex;align-items:end;gap:4px;opacity:.85}.bars i{display:block;width:5px;height:5px;border-radius:5px 5px 1px 1px;background:var(--cyan);animation:beat .7s ease-in-out infinite alternate}.bars i:nth-child(3n){animation-delay:.25s}.bars i:nth-child(2n){animation-delay:.45s}.bars.paused i{height:4px!important;animation:none}@keyframes beat{from{height:5px}to{height:26px}}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:center}.actions button{min-height:48px}.timer-oval{border-color:#3b6477;background:linear-gradient(180deg,#18364b,#102337);color:#bdeaf0;min-width:0}.timer-oval.active{border-color:var(--cyan);color:#e7ffff;box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.timer-cylinder{display:inline-block;animation:spin 2.4s linear infinite}.timer-panel{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px}.timer-panel button{padding:9px 12px;border-radius:999px}.timer-panel .timer-choice{background:#142c40;border-color:#36556b}.timer-panel .timer-cancel{color:var(--muted);background:transparent}.timer-caption{width:100%;font-size:12px;color:var(--muted);text-align:center}.oval-btn{height:48px;border-radius:999px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;font-size:13px}.cast-oval{border-color:#3b6477;background:linear-gradient(180deg,#18364b,#102337);color:var(--cyan)}.cast-oval.connected{box-shadow:0 0 0 2px #34d8e866,0 0 18px #34d8e855;border-color:var(--cyan)}.power-wrap{display:flex;justify-content:flex-end}.power-toggle{position:relative;width:100%;max-width:190px;height:48px;padding:4px 12px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#172334;border:1px solid #34445a;color:var(--muted);transition:background .2s,border-color .2s,box-shadow .2s}.power-toggle .track{position:relative;width:42px;height:24px;border-radius:999px;background:#35465a;flex-shrink:0;transition:background .2s}.power-toggle .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#d7e2ef;transition:transform .2s,background .2s}.power-toggle[aria-checked="true"]{background:#103a3c;border-color:var(--cyan);color:#e7ffff;box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.power-toggle[aria-checked="true"] .track{background:#16a6a8}.power-toggle[aria-checked="true"] .knob{transform:translateX(18px);background:white}.power-toggle:focus-visible,.cast-oval:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.power-toggle.icon-power{width:64px;max-width:64px;height:48px;padding:0;justify-content:center;border-radius:999px;font-size:23px;font-weight:700;line-height:1;color:var(--muted);background:#172334;border:1px solid #34445a;box-shadow:none}.power-toggle.icon-power[aria-pressed="true"]{color:#e7ffff;background:#103a3c;border-color:var(--cyan);box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.power-toggle.icon-power:active{transform:scale(.97)}.power-toggle.icon-power:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;background:#0b1828;border:1px solid var(--line);border-radius:15px;gap:4px}.tabs button{border:0;background:transparent;color:var(--muted);padding:10px}.tabs button.selected{background:var(--panel2);color:var(--cyan)}.toolbar{display:flex;gap:8px}.toolbar input{flex:1;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:13px;padding:12px 14px;outline:none}.toolbar input:focus{border-color:var(--cyan)}.sectiontitle{display:flex;justify-content:space-between;align-items:center;margin:2px 0 0}.sectiontitle h3{font-size:15px;margin:0}.sectiontitle span{font-size:12px;color:var(--muted)}.list{display:flex;flex-direction:column;gap:8px}.item{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);background:var(--panel);border-radius:15px;min-width:0}.item.active{border-color:#2daebe;background:#102b3b}.item .meta{min-width:0;flex:1}.item strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.play{width:42px;height:42px;padding:0;border-radius:12px;flex-shrink:0;color:var(--cyan);font-size:18px}.heart{padding:8px;border:0;background:transparent;color:var(--muted);font-size:18px}.bottom{font-size:11px;line-height:1.5;color:var(--muted);padding:4px 3px 16px}.bottom a{color:var(--cyan)}.volume{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px 14px}.volume label{font-size:12px;color:var(--muted);white-space:nowrap}.volume input{width:100%;accent-color:var(--cyan)}.notice{border:1px solid #5a4d2b;background:#2a2517;color:#f3d995;border-radius:12px;padding:11px 12px;font-size:12px;line-height:1.45}.hidden{display:none!important}.empty{padding:25px 14px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed var(--line);border-radius:15px}.spinner{display:inline-block;width:12px;height:12px;border:2px solid #426172;border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:5px}@keyframes spin{to{transform:rotate(360deg)}}@media(min-width:620px){.app{padding:24px}.screen{min-height:220px}.list{display:grid;grid-template-columns:1fr 1fr}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:14px;background:var(--panel2);color:var(--text);padding:12px 14px;font-weight:650}button:active{transform:scale(.985)}button.primary{background:var(--cyan);border-color:var(--cyan);color:#04111e}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:760px;margin:auto;padding:16px;display:flex;flex-direction:column;gap:14px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#1a617b,#35dbe8);font-size:23px;color:#06121d}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:800}.brand h1{font-size:20px;line-height:1.15;margin:3px 0 0}.status{font-size:12px;color:var(--muted);text-align:right;max-width:42%}.screen{border:1px solid var(--line);border-radius:24px;padding:20px;background:radial-gradient(ellipse at 50% 0%,#153d5a 0,#10233a 45%,#0b1728 100%);min-height:190px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;box-shadow:0 14px 38px #0003}.screenhead{display:flex;justify-content:space-between;gap:12px;align-items:center}.pill{border:1px solid #3c6073;border-radius:99px;padding:5px 9px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.8px}.live{font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px}.now{min-width:0}.now small{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.now h2{font-size:clamp(22px,6vw,34px);line-height:1.08;overflow-wrap:anywhere;margin:0 0 8px}.now p{font-size:13px;color:var(--muted);margin:0}.bars{height:28px;display:flex;align-items:end;gap:4px;opacity:.85}.bars i{display:block;width:5px;height:5px;border-radius:5px 5px 1px 1px;background:var(--cyan);animation:beat .7s ease-in-out infinite alternate}.bars i:nth-child(3n){animation-delay:.25s}.bars i:nth-child(2n){animation-delay:.45s}.bars.paused i{height:4px!important;animation:none}@keyframes beat{from{height:5px}to{height:26px}}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:center}.actions button{min-height:48px}.timer-oval{border-color:#3b6477;background:linear-gradient(180deg,#18364b,#102337);color:#bdeaf0;min-width:0}.timer-oval.active{border-color:var(--cyan);color:#e7ffff;box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.timer-cylinder{display:inline-block;animation:spin 2.4s linear infinite}.timer-panel{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px}.timer-panel button{padding:9px 12px;border-radius:999px}.timer-panel .timer-choice{background:#142c40;border-color:#36556b}.timer-panel .timer-cancel{color:var(--muted);background:transparent}.timer-caption{width:100%;font-size:12px;color:var(--muted);text-align:center}.oval-btn{height:48px;border-radius:999px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;font-size:13px}.cast-oval{border-color:#3b6477;background:linear-gradient(180deg,#18364b,#102337);color:var(--cyan)}.cast-oval.connected{box-shadow:0 0 0 2px #34d8e866,0 0 18px #34d8e855;border-color:var(--cyan)}.power-wrap{display:flex;justify-content:flex-end}.power-toggle{position:relative;width:100%;max-width:190px;height:48px;padding:4px 12px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#172334;border:1px solid #34445a;color:var(--muted);transition:background .2s,border-color .2s,box-shadow .2s}.power-toggle .track{position:relative;width:42px;height:24px;border-radius:999px;background:#35465a;flex-shrink:0;transition:background .2s}.power-toggle .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#d7e2ef;transition:transform .2s,background .2s}.power-toggle[aria-checked="true"]{background:#103a3c;border-color:var(--cyan);color:#e7ffff;box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.power-toggle[aria-checked="true"] .track{background:#16a6a8}.power-toggle[aria-checked="true"] .knob{transform:translateX(18px);background:white}.power-toggle:focus-visible,.cast-oval:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.power-toggle.icon-power{width:64px;max-width:64px;height:48px;padding:0;justify-content:center;border-radius:999px;font-size:23px;font-weight:700;line-height:1;color:var(--muted);background:#172334;border:1px solid #34445a;box-shadow:none}.power-toggle.icon-power[aria-pressed="true"]{color:#e7ffff;background:#103a3c;border-color:var(--cyan);box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.power-toggle.icon-power:active{transform:scale(.97)}.power-toggle.icon-power:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.toolbar{display:flex;gap:8px}.toolbar input{flex:1;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:13px;padding:12px 14px;outline:none}.toolbar input:focus{border-color:var(--cyan)}.sectiontitle{display:flex;justify-content:space-between;align-items:center;margin:2px 0 0}.sectiontitle h3{font-size:15px;margin:0}.sectiontitle span{font-size:12px;color:var(--muted)}.list{display:flex;flex-direction:column;gap:8px}.item{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);background:var(--panel);border-radius:15px;min-width:0}.item.active{border-color:#2daebe;background:#102b3b}.item .meta{min-width:0;flex:1}.item strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.play{width:42px;height:42px;padding:0;border-radius:12px;flex-shrink:0;color:var(--cyan);font-size:18px}.heart{padding:8px;border:0;background:transparent;color:var(--muted);font-size:18px}.bottom{font-size:11px;line-height:1.5;color:var(--muted);padding:4px 3px 16px}.bottom a{color:var(--cyan)}.volume{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px 14px}.volume label{font-size:12px;color:var(--muted);white-space:nowrap}.volume input{width:100%;accent-color:var(--cyan)}.notice{border:1px solid #5a4d2b;background:#2a2517;color:#f3d995;border-radius:12px;padding:11px 12px;font-size:12px;line-height:1.45}.hidden{display:none!important}.empty{padding:25px 14px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed var(--line);border-radius:15px}.spinner{display:inline-block;width:12px;height:12px;border:2px solid #426172;border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:5px}@keyframes spin{to{transform:rotate(360deg)}}@media(min-width:620px){.app{padding:24px}.screen{min-height:220px}.list{display:grid;grid-template-columns:1fr 1fr}}
 </style>
 <script>
 window.__onGCastApiAvailable = function(available) {
@@ -25,8 +24,8 @@ window.__onGCastApiAvailable = function(available) {
 <body>
 <main class="app">
   <header class="top">
-    <div class="brand"><div class="logo">♫</div><div><div class="eyebrow">Internetové vysielanie</div><h1>SK Media</h1></div></div>
-    <div class="status" id="status">Načítavam katalógy…</div>
+    <div class="brand"><div class="logo">♫</div><div><div class="eyebrow">Internetové vysielanie</div><h1>SK Rádiá</h1></div></div>
+    <div class="status" id="status">Katalóg načítaný</div>
   </header>
 
   <section class="screen" aria-live="polite">
@@ -50,44 +49,45 @@ window.__onGCastApiAvailable = function(available) {
   </div>
   <div class="volume"><label for="volume">HLASITOSŤ</label><input id="volume" type="range" min="0" max="1" step=".01" value=".5"><strong id="volumeText">50%</strong></div>
 
-  <div class="tabs" role="tablist"><button id="radioTab" class="selected" role="tab" aria-selected="true">♫ Rádio SK</button><button id="tvTab" role="tab" aria-selected="false">▣ TV SK + CZ</button></div>
-  <div class="toolbar"><input id="search" type="search" placeholder="Hľadať stanicu…" autocomplete="off"><button id="reloadBtn" title="Obnoviť databázu">↻</button></div>
-  <div class="sectiontitle"><h3 id="listTitle">Slovenské rádiá</h3><span id="count">0 staníc</span></div>
+  <!-- Odstránené prepínanie TV/Radio -->
+  <div class="toolbar"><input id="search" type="search" placeholder="Hľadať stanicu…" autocomplete="off"></div>
+  
+  <div class="sectiontitle"><h3 id="listTitle">Slovenské rádiá (HQ)</h3><span id="count">0 staníc</span></div>
   <div class="list" id="stationList"><div class="empty"><span class="spinner"></span>Načítavam databázu…</div></div>
 
   <div class="notice">Automatické spustenie na Chromecaste je možné po výbere zariadenia v systémovom dialógu.</div>
-  <footer class="bottom">Katalógy: Rádio stanice a TV playlisty. Dostupnosť streamov závisí od tretích strán.</footer>
+  <footer class="bottom">Garantované HTTPS streamy vo vysokej kvalite.</footer>
 </main>
 <audio id="audio" playsinline></audio>
-<video id="video" playsinline controls class="hidden" style="width:100%;max-height:35vh"></video>
 
 <script>
 (() => {
 'use strict';
 const $ = id => document.getElementById(id);
-const TV_SOURCES = [
-  {label:'Slovensko',url:'https://raw.githubusercontent.com/Free-TV/IPTV/master/lists/slovakia.md'},
-  {label:'Česko',url:'https://raw.githubusercontent.com/Free-TV/IPTV/master/lists/czech_republic.md'}
+
+// Vložený zoznam overených HTTPS streamov
+const radios = [
+  {name: 'Rádio Expres', url: 'https://stream.expres.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
+  {name: 'Fun Rádio', url: 'https://stream.funradio.sk:8443/fun256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
+  {name: 'Rádio Vlna', url: 'https://stream.radiovlna.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
+  {name: 'Europa 2', url: 'https://stream.europa2.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
+  {name: 'Rádio Melody', url: 'https://stream.radiomelody.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
+  {name: 'Rádio Slovensko', url: 'https://icecast.stv.livebox.sk/slovensko_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Regina Západ', url: 'https://icecast.stv.livebox.sk/reginaba_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Regina Stred', url: 'https://icecast.stv.livebox.sk/reginabb_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Regina Východ', url: 'https://icecast.stv.livebox.sk/reginake_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Devín', url: 'https://icecast.stv.livebox.sk/devin_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio_FM', url: 'https://icecast.stv.livebox.sk/fm_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Patria', url: 'https://icecast.stv.livebox.sk/patria_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Litera', url: 'https://icecast.stv.livebox.sk/litera_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Junior', url: 'https://icecast.stv.livebox.sk/junior_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
+  {name: 'Rádio Pyramída', url: 'https://icecast.stv.livebox.sk/pyramida_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'}
 ];
 
-// Garantované funkčné HTTPS streamy - HTTP streamy boli blokované prehliadačom
-const HQ_RADIOS = [
-  {name: 'Rádio Slovensko (HTTPS)', url: 'https://icecast.stv.livebox.sk/slovensko_128.mp3', codec: 'HQ', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Regina Západ (HTTPS)', url: 'https://icecast.stv.livebox.sk/reginaba_128.mp3', codec: 'HQ', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Regina Stred (HTTPS)', url: 'https://icecast.stv.livebox.sk/reginabb_128.mp3', codec: 'HQ', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Regina Východ (HTTPS)', url: 'https://icecast.stv.livebox.sk/reginake_128.mp3', codec: 'HQ', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Devín (HTTPS)', url: 'https://icecast.stv.livebox.sk/devin_128.mp3', codec: 'HQ', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio_FM (HTTPS)', url: 'https://icecast.stv.livebox.sk/fm_128.mp3', codec: 'HQ', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Fun Rádio (HTTPS)', url: 'https://stream.funradio.sk:8443/fun256.mp3', codec: '256 kbps', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Expres (HTTPS)', url: 'https://stream.expres.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Vlna (HTTPS)', url: 'https://stream.radiovlna.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Europa 2 (HTTPS)', url: 'https://stream.europa2.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko', type: 'radio'},
-  {name: 'Rádio Melody (HTTPS)', url: 'https://stream.radiomelody.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko', type: 'radio'}
-];
-
-let radios=[], tvs=[], mode='radio', selected=null, castContext=null, castSession=null, pendingCast=null;
+let selected=null, castContext=null, castSession=null;
 let localPlaying=false, playbackOn=false;
 const CAST_PREF_KEY='skmedia-preferred-cast-name';
+
 function preferredCastName(){try{return localStorage.getItem(CAST_PREF_KEY)||''}catch(e){return ''}}
 function rememberCastDevice(session){
   try{
@@ -95,6 +95,7 @@ function rememberCastDevice(session){
     if(name){localStorage.setItem(CAST_PREF_KEY,name);$('castBtnText').textContent=name}
   }catch(e){console.warn('Nepodarilo sa uložiť preferovaný Chromecast',e)}
 }
+
 function initCastContext(){
   if(!window.castSdkReady||!window.cast?.framework)return;
   try{
@@ -111,138 +112,38 @@ function initCastContext(){
   }catch(e){console.warn('Google Cast inicializácia:',e)}
 }
 
-const audio=$('audio'), video=$('video');
+const audio=$('audio');
 const bars=$('bars');
 for(let i=0;i<28;i++){const b=document.createElement('i');b.style.animationDelay=(Math.random()*.6)+'s';bars.appendChild(b)}
 function status(s){$('status').textContent=s}
-function safeText(s){return String(s??'').replace(/\s+/g,' ').trim()}
-function currentList(){return mode==='radio'?radios:tvs}
-function defaultRadio(){return radios[0]||null}
+
 function setNow(item){
   selected=item;
-  $('modePill').textContent=mode==='radio'?'RÁDIO':'TELEVÍZIA';
-  $('nowLabel').textContent=mode==='radio'?'VYBRANÁ STANICA':'VYBRANÝ KANÁL';
   $('nowTitle').textContent=item?.name||'Nič nie je vybrané';
-  $('nowSub').textContent=item?(item.countryLabel||item.codec||item.group||'Internetový stream'):'Načítajte databázu';
+  $('nowSub').textContent=item?(item.codec+' • '+item.countryLabel):'Vyberte stanicu zo zoznamu';
   renderList();
 }
+
 function renderList(){
   const q=$('search').value.trim().toLocaleLowerCase('sk');
-  const data=currentList().filter(x=>!q||(x.name+' '+(x.group||'')+' '+(x.countryLabel||'')).toLocaleLowerCase('sk').includes(q));
-  $('count').textContent=data.length+' položiek';
-  $('listTitle').textContent=mode==='radio'?'Slovenské rádiá':'TV kanály SK + CZ';
+  const data=radios.filter(x=>!q||(x.name+' '+x.countryLabel).toLocaleLowerCase('sk').includes(q));
+  $('count').textContent=data.length+' staníc';
   $('stationList').replaceChildren();
-  if(!data.length){const e=document.createElement('div');e.className='empty';e.textContent=currentList().length?'Nič sa nenašlo.':'Databáza je prázdna alebo sa ju nepodarilo načítať.';$('stationList').appendChild(e);return}
-  data.slice(0,500).forEach(item=>{
+  
+  if(!data.length){
+    const e=document.createElement('div');e.className='empty';e.textContent='Žiadna stanica nenašla.';$('stationList').appendChild(e);return;
+  }
+  
+  data.forEach(item=>{
     const row=document.createElement('div');row.className='item'+(selected?.url===item.url?' active':'');
     const meta=document.createElement('div');meta.className='meta';
     const title=document.createElement('strong');title.textContent=item.name;
-    const sub=document.createElement('small');sub.textContent=mode==='radio'?[item.codec,item.bitrate?item.bitrate+' kb/s':'',item.countryLabel].filter(Boolean).join(' • '):[item.countryLabel,item.group].filter(Boolean).join(' • ');
+    const sub=document.createElement('small');sub.textContent=item.codec+' • '+item.countryLabel;
     meta.append(title,sub);
-    const play=document.createElement('button');play.className='play';play.textContent='▶';play.title='Prehrať '+item.name;play.setAttribute('aria-label',play.title);play.addEventListener('click',()=>chooseAndPlay(item));
+    const play=document.createElement('button');play.className='play';play.textContent='▶';play.title='Prehrať '+item.name;play.setAttribute('aria-label',play.title);
+    play.addEventListener('click',()=>chooseAndPlay(item));
     row.append(meta,play);$('stationList').appendChild(row);
   });
-}
-
-async function loadRadios(){
-  try{
-    // Základ tvorí náš overený HTTPS zoznam, aby nedochádzalo k blokovaniu prehliadačom
-    radios = [...HQ_RADIOS];
-    
-    // Následne stiahneme doplnkový m3u zoznam z githubu
-    const url='https://raw.githubusercontent.com/iprd-org/iprd/main/streams/sk/sk.m3u';
-    const r=await fetch(url,{cache:'no-store'});
-    if(r.ok){
-      const text=await r.text();
-      let cName='Neznáma stanica', cGroup='Slovensko';
-      for(let line of text.split(/
-?
-/)){
-        line=line.trim();
-        if(line.startsWith('#EXTINF:')){
-          let p=line.split(',');if(p.length>1)cName=safeText(p.slice(1).join(','));
-          let g=line.match(/group-title="([^"]+)"/i);if(g)cGroup=safeText(g[1]);
-        }else if(line&&!line.startsWith('#')&&line.startsWith('https://')){ 
-          // Pridáme len https:// streamy, aby sme sa vyhli zlyhaniam Mixed Content
-          // Skontrolujeme, ci uz taky stream nemame
-          if(!radios.some(r => r.url === line)) {
-            radios.push({name:cName,url:line,codec:'Stream',bitrate:0,countryLabel:cGroup,type:'radio'});
-          }
-          cName='Neznáma stanica';cGroup='Slovensko';
-        }
-      }
-    }
-    if(!selected)selected=defaultRadio();
-    status('Rádiá: '+radios.length+' • TV: '+tvs.length);
-  }catch(e){console.error(e);status('Načítané iba garantované HQ rádiá');}
-  if(mode==='radio'){if(!selected)selected=defaultRadio();setNow(selected)}else renderList();
-}
-
-function parseCountryMarkdown(text,countryLabel){
-  const out=[];
-  let inTable=false, invalidSection=false;
-  for(const rawLine of text.split(/
-?
-/)){
-    const line=rawLine.trim();
-    if(/^##?\s+Invalid /i.test(line)){invalidSection=true;break;}
-    if(!line.startsWith('|'))continue;
-    if(/\|\s*Channel\s*\|/i.test(line)){inTable=true;continue;}
-    if(!inTable||/^\|\s*:?-+:?\s*\|/.test(line))continue;
-    const cells=line.split('|').slice(1,-1).map(x=>x.trim());
-    if(cells.length<3)continue;
-    const name=cells[1].replace(/<[^>]*>/g,'').replace(/Ⓢ/g,'').trim();
-    const link=cells[2].match(/\]\((https?:\/\/[^)\s]+)\)/i);
-    if(!name||!link)continue;
-    out.push({name,url:link[1],countryLabel,group:countryLabel,type:'tv'});
-  }
-  return out.filter((x,i,a)=>a.findIndex(y=>y.url===x.url)===i);
-}
-async function loadTV(){
-  status('Kontrolujem a obnovujem zoznam TV…');
-  const results=await Promise.allSettled(TV_SOURCES.map(async source=>{
-    const r=await fetch(source.url+'?v='+Date.now(),{cache:'no-store'});
-    if(!r.ok)throw new Error(source.label+': HTTP '+r.status);
-    const text=await r.text();
-    if(!text.includes('| Channel |')&&!text.includes('| Channel        |'))throw new Error(source.label+': neznámy formát zoznamu');
-    const parsed=parseCountryMarkdown(text,source.label);
-    if(!parsed.length)throw new Error(source.label+': nenašli sa platné kanály');
-    return parsed;
-  }));
-  const success=results.filter(x=>x.status==='fulfilled').length;
-  tvs=results.flatMap(r=>r.status==='fulfilled'?r.value:[]);
-  const unique=new Map();tvs.forEach(x=>{if(!unique.has(x.url))unique.set(x.url,x)});tvs=[...unique.values()];
-  const failed=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'zdroj nedostupný');
-  if(mode==='tv'){
-    if(!tvs.some(x=>x.url===selected?.url))selected=tvs[0]||null;
-    setNow(selected);
-  } else renderList();
-  status('Rádiá: '+radios.length+' • TV: '+tvs.length+
-    (success===TV_SOURCES.length?' • zoznamy skontrolované':' • niektoré zoznamy nedostupné')+
-    (failed.length?' ('+failed.join('; ')+')':''));
-}
-function setMode(next){
-  mode=next;
-  $('radioTab').classList.toggle('selected',mode==='radio');$('tvTab').classList.toggle('selected',mode==='tv');
-  $('radioTab').setAttribute('aria-selected',String(mode==='radio'));$('tvTab').setAttribute('aria-selected',String(mode==='tv'));
-  $('search').value='';
-  const list=currentList();
-  if(!list.some(x=>x.url===selected?.url))selected=mode==='radio'?defaultRadio():(tvs[0]||null);
-  setNow(selected);
-}
-function mediaType(item){
-  const u=item.url.toLowerCase().split('?')[0];
-  if(mode==='radio'||item.type==='radio'){
-    if(/\.m3u8$/.test(u))return 'application/x-mpegURL';
-    if(/\.aac$/.test(u))return 'audio/aac';
-    if(/\.ogg$|\.opus$/.test(u))return 'audio/ogg';
-    if(/\.mp3$/.test(u))return 'audio/mpeg';
-    return 'audio/mpeg';
-  }
-  if(/\.m3u8$/.test(u))return 'application/x-mpegURL';
-  if(/\.mpd$/.test(u))return 'application/dash+xml';
-  if(/\.mp4$/.test(u))return 'video/mp4';
-  return 'application/x-mpegURL';
 }
 
 function setPlaybackState(on){
@@ -257,7 +158,7 @@ function setPlaybackState(on){
 
 async function loadOnCast(item){
   const session=castContext?.getCurrentSession();if(!session)throw new Error('Chromecast nie je pripojený.');
-  const info=new chrome.cast.media.MediaInfo(item.url,mediaType(item));
+  const info=new chrome.cast.media.MediaInfo(item.url,'audio/mpeg');
   info.metadata=new chrome.cast.media.GenericMediaMetadata();info.metadata.title=item.name;
   const req=new chrome.cast.media.LoadRequest(info);req.autoplay=true;
   await session.loadMedia(req);
@@ -265,29 +166,24 @@ async function loadOnCast(item){
   setPlaybackState(true);
   $('liveState').textContent='● CAST PREHRÁVA';
 }
+
 async function localPlay(item){
-  const isRadio=mode==='radio'||item.type==='radio';
-  const el=isRadio?audio:video;
-  if(el===audio){video.pause();video.classList.add('hidden');audio.classList.remove('hidden')}
-  else{audio.pause();audio.classList.add('hidden');video.classList.remove('hidden')}
+  audio.pause();
+  audio.removeAttribute('src');
+  audio.load();
   
-  // Robustné re-nastavenie zdroja
-  el.pause();
-  el.removeAttribute('src');
-  el.load();
-  
-  el.src=item.url;
-  el.volume=Number($('volume').value);
-  el.load();
-  await el.play();
+  audio.src=item.url;
+  audio.volume=Number($('volume').value);
+  audio.load();
+  await audio.play();
   localPlaying=true;
   setPlaybackState(true);
 }
 
 async function stopPlayback(){
-  audio.pause();video.pause();
-  audio.removeAttribute('src');video.removeAttribute('src');
-  audio.load();video.load();
+  audio.pause();
+  audio.removeAttribute('src');
+  audio.load();
   localPlaying=false;
   
   const s=castContext?.getCurrentSession();
@@ -302,8 +198,7 @@ async function stopPlayback(){
 }
 
 async function startPlayback(){
-  if(!selected){status('Najprv vyber stanicu.');return;}
-  // Preventívne stopneme predchadzajuci stream
+  if(!selected){status('Najprv vyberte stanicu.');return;}
   await stopPlayback();
   
   try{
@@ -320,12 +215,14 @@ async function startPlayback(){
     status('Prehrávanie zlyhalo: '+(e?.message||'neznáma chyba'));
   }
 }
+
 async function chooseAndPlay(item){
   setNow(item);
   await startPlayback();
 }
+
 async function connectCast(){
-  if(!window.castSdkReady||!window.cast?.framework){status('Google Cast SDK nie je dostupné. Skús Chrome a rovnakú Wi‑Fi.');return}
+  if(!window.castSdkReady||!window.cast?.framework){status('Google Cast SDK nie je dostupné.');return}
   try{
     initCastContext();
     if(!castContext.getCurrentSession()) await castContext.requestSession();
@@ -339,10 +236,9 @@ async function connectCast(){
       if(Number.isFinite(currentVolume)){ $('volume').value=String(currentVolume); $('volumeText').textContent=Math.round(currentVolume*100)+'%'; }
     }
     
-    // Ak mame vybranu stanicu a pustime cast, automaticky ju tam skusime dat
     if(selected){
-      await stopPlayback(); // Zastavi lokalne audio
-      await startPlayback(); // Pusti na Cast
+      await stopPlayback();
+      await startPlayback();
     }
     status('Chromecast pripojený');
   }catch(e){
@@ -350,6 +246,7 @@ async function connectCast(){
     status(e?.code==='cancel'?'Pripojenie zrušené':'Chromecast: '+(e?.message||e?.code||'nepodarilo sa pripojiť'));
   }
 }
+
 $('castBtn').addEventListener('click',connectCast);
 $('powerBtn').addEventListener('click',async()=>{if(playbackOn)await stopPlayback();else await startPlayback()});
 
@@ -362,7 +259,7 @@ function updateSleepTimerUI(){
   if(active){
     const seconds=Math.max(0,Math.ceil((sleepTimerEnd-Date.now())/1000));
     $('timerBtnText').textContent=Math.floor(seconds/60)+'m '+String(seconds%60).padStart(2,'0')+'s';
-    $('timerCaption').textContent='Stream sa vypne o '+new Date(sleepTimerEnd).toLocaleTimeString('sk-SK',{hour:'2-digit',minute:'2-digit'})+'.';
+    $('timerCaption').textContent='Rádio sa vypne o '+new Date(sleepTimerEnd).toLocaleTimeString('sk-SK',{hour:'2-digit',minute:'2-digit'})+'.';
   }else{$('timerBtnText').textContent='Časovač';$('timerCaption').textContent='Predvolený čas vypnutia: 120 minút.';}
 }
 async function expireSleepTimer(){
@@ -370,7 +267,7 @@ async function expireSleepTimer(){
   try{localStorage.removeItem(SLEEP_TIMER_KEY)}catch(e){}
   if(sleepTimerInterval){clearInterval(sleepTimerInterval);sleepTimerInterval=null;}
   await stopPlayback();
-  $('timerPanel').classList.add('hidden');updateSleepTimerUI();status('Časovač: stream automaticky vypnutý');
+  $('timerPanel').classList.add('hidden');updateSleepTimerUI();status('Časovač: rádio automaticky vypnuté');
 }
 function cancelSleepTimer(){
   sleepTimerEnd=0;try{localStorage.removeItem(SLEEP_TIMER_KEY)}catch(e){}
@@ -406,15 +303,14 @@ $('timerBtn').addEventListener('click',()=>{$('timerPanel').classList.toggle('hi
 document.querySelectorAll('[data-minutes]').forEach(btn=>btn.addEventListener('click',()=>startSleepTimer(Number(btn.dataset.minutes))));
 $('timerCancel').addEventListener('click',()=>{cancelSleepTimer();$('timerPanel').classList.add('hidden');});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden && sleepTimerEnd && Date.now()>=sleepTimerEnd){expireSleepTimer();}else updateSleepTimerUI();});
-$('radioTab').addEventListener('click',()=>setMode('radio'));
-$('tvTab').addEventListener('click',()=>setMode('tv'));
+
 $('search').addEventListener('input',renderList);
-$('reloadBtn').addEventListener('click',async()=>{status('Obnovujem katalógy…');await Promise.all([loadRadios(),loadTV()])});
+
 let volumeTimer=null, volumeRequest=0;
 $('volume').addEventListener('input',()=>{
   const level=Math.max(0,Math.min(1,Number($('volume').value)));
   $('volumeText').textContent=Math.round(level*100)+'%';
-  audio.volume=level; video.volume=level;
+  audio.volume=level;
   const request=++volumeRequest;
   if(volumeTimer)clearTimeout(volumeTimer);
   volumeTimer=setTimeout(async()=>{
@@ -429,15 +325,16 @@ $('volume').addEventListener('input',()=>{
     }
   },120);
 });
-window.addEventListener('cast-sdk-ready',()=>{if(window.castSdkReady){initCastContext();status(preferredCastName()?'Preferovaný Chromecast: '+preferredCastName():'Google Cast pripravený • načítavam katalógy')}}); if(window.castSdkReady)initCastContext();
+window.addEventListener('cast-sdk-ready',()=>{if(window.castSdkReady){initCastContext();status(preferredCastName()?'Preferovaný Chromecast: '+preferredCastName():'Google Cast pripravený')}}); 
+if(window.castSdkReady)initCastContext();
 restoreOrStartSleepTimer();
-(async()=>{
-  await Promise.all([loadRadios(),loadTV()]);
-  if(!selected)selected=defaultRadio();
-  if(selected&&mode==='radio')setNow(selected);
-})();
+
+// Inicializácia pri načítaní
+selected = radios[0];
+setNow(selected);
+status('Katalóg načítaný');
+
 })();
 </script>
 </body>
 </html>
-Zobrazuje sa položka index.html.
