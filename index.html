@@ -15,10 +15,11 @@
             --text-muted: #8c92a4;
             --success: #00e676;
             --danger: #ff5252;
+            --warn: #ffb300;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -133,12 +134,41 @@
             100% { height: 20px; }
         }
 
+        /* Oznámenia (chyby spojenia, alternatívy) */
+        .notice {
+            position: relative;
+            border-radius: 12px;
+            padding: 12px 34px 12px 12px;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+            line-height: 1.35;
+            background: rgba(255, 179, 0, 0.1);
+            border: 1px solid rgba(255, 179, 0, 0.45);
+        }
+        .notice[hidden] { display: none; }
+        .notice.error { background: rgba(255, 82, 82, 0.1); border-color: rgba(255, 82, 82, 0.5); }
+        .notice.info { background: rgba(0, 229, 255, 0.07); border-color: rgba(0, 229, 255, 0.35); }
+        .notice-close {
+            position: absolute; top: 6px; right: 8px;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.1rem; cursor: pointer; line-height: 1;
+        }
+        .notice-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .notice-actions:empty { display: none; }
+        .notice-btn {
+            background: #252a3a; color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px; padding: 7px 12px;
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+        }
+        .notice-btn:hover { border-color: var(--accent-color); }
+
         /* Ovládacie prvky */
         .controls-panel {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .volume-container {
@@ -183,7 +213,8 @@
         }
 
         .btn:hover { background: #2f3548; border-color: var(--accent-color); }
-        
+        .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
         .btn-primary {
             background: var(--accent-color);
             color: #000;
@@ -191,11 +222,29 @@
         }
         .btn-primary:hover { background: #00b8d4; }
 
+        /* Stav Chromecastu */
+        .cast-status {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+        .link-btn {
+            background: none; border: none; color: var(--accent-color);
+            cursor: pointer; font-size: 0.8rem; text-decoration: underline; padding: 2px 4px;
+        }
+
         /* Zoznam streamov */
-        .streams-section h2 {
+        .streams-head {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .streams-head h2 {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -204,13 +253,22 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            max-height: 260px;
+            max-height: 340px;
             overflow-y: auto;
             padding-right: 4px;
         }
 
         .streams-list::-webkit-scrollbar { width: 4px; }
         .streams-list::-webkit-scrollbar-thumb { background: #2f3548; border-radius: 2px; }
+
+        .group-title {
+            font-size: 0.72rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 8px 2px 0;
+        }
+        .group-title:first-child { margin-top: 0; }
 
         .stream-card {
             background: #131620;
@@ -247,6 +305,9 @@
         }
         .health-indicator.ok { background: var(--success); box-shadow: 0 0 6px var(--success); }
         .health-indicator.error { background: var(--danger); }
+        .health-indicator.warn { background: var(--warn); }
+        .health-indicator.checking { background: var(--warn); animation: pulse 1s infinite ease-in-out alternate; }
+        @keyframes pulse { from { opacity: 0.35; } to { opacity: 1; } }
 
         .stream-name {
             font-size: 0.95rem;
@@ -273,6 +334,14 @@
         #audioElement { display: none; }
     </style>
 
+    <!-- Callback MUSÍ existovať ešte pred načítaním Cast SDK, inak ho SDK môže zavolať skôr, než je definovaný -->
+    <script>
+        window.__castAvailable = undefined;
+        window['__onGCastApiAvailable'] = function (isAvailable) {
+            window.__castAvailable = !!isAvailable;
+            if (typeof window.onCastApiReady === 'function') window.onCastApiReady(!!isAvailable);
+        };
+    </script>
     <!-- Google Cast SDK -->
     <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 </head>
@@ -283,7 +352,7 @@
 
         <!-- Horný displej -->
         <div id="displayPanel" class="display-panel">
-            <div class="now-playing-label">Práve hraje</div>
+            <div class="now-playing-label">Práve hrá</div>
             <div id="displayTitle" class="track-title">Žiadny stream nevybratý</div>
             <div class="track-meta">
                 <span id="displayStatus">Pripravené</span>
@@ -298,6 +367,13 @@
             </div>
         </div>
 
+        <!-- Oznámenia -->
+        <div id="notice" class="notice" hidden>
+            <button id="noticeClose" class="notice-close" aria-label="Zavrieť">×</button>
+            <div id="noticeText"></div>
+            <div id="noticeActions" class="notice-actions"></div>
+        </div>
+
         <!-- Ovládacie prvky -->
         <div class="controls-panel">
             <div class="volume-container">
@@ -305,308 +381,863 @@
                 <input type="range" id="volumeRange" min="0" max="1" step="0.05" value="1">
             </div>
             <div class="action-buttons">
-                <button id="castBtn" class="btn" onclick="toggleCastSession()">
+                <button id="castBtn" class="btn">
                     <span>📺</span> <span id="castLabel">Chromecast</span>
                 </button>
-                <button id="playBtn" class="btn btn-primary" onclick="togglePlayPause()">
+                <button id="playBtn" class="btn btn-primary">
                     <span id="playIcon">▶</span> <span id="playText">Prehrať</span>
                 </button>
             </div>
         </div>
 
+        <!-- Stav pripojenia na Chromecast -->
+        <div class="cast-status">
+            <span id="castDot" class="health-indicator"></span>
+            <span id="castInfo">Chromecast: zisťujem stav…</span>
+            <button id="castCheckBtn" class="link-btn">Skontrolovať spojenie</button>
+        </div>
+
         <!-- Zoznam streamov -->
         <div class="streams-section">
-            <h2>Slovenské rádiá & Streamy</h2>
+            <div class="streams-head">
+                <h2>Ponuka rádií</h2>
+                <button id="recheckBtn" class="link-btn" title="Znovu overiť, ktoré streamy tento Chromebook vie prehrať">↻ Overiť dostupnosť</button>
+            </div>
             <div id="streamsList" class="streams-list">
                 <!-- Dynamicky generované -->
             </div>
         </div>
     </div>
 
-    <audio id="audioElement" crossorigin="anonymous"></audio>
+    <!-- Bez crossorigin: stream bez CORS hlavičiek by sa inak vôbec neprehral -->
+    <audio id="audioElement" preload="none"></audio>
 
     <script>
-        // Databáza slovenských rádií s vysokou kvalitou (256, 192, 128 kbps) a záložnými linkami
-        const streams = [
-            {
-                name: "Rádio Slovensko",
-                bitrate: "256 kbps",
-                urls: [
-                    "https://n06.rcs.revma.com/g8hh72e3t1quv?njts=1710000000",
-                    "https://icecast.stvr.sk/Slovensko-128.mp3"
-                ]
-            },
-            {
-                name: "Rádio_FM",
-                bitrate: "256 kbps",
-                urls: [
-                    "https://n04.rcs.revma.com/y35522e3t1quv",
-                    "https://icecast.stvr.sk/FM-128.mp3"
-                ]
-            },
-            {
-                name: "Rádio Expres",
-                bitrate: "192 kbps",
-                urls: [
-                    "https://stream.express.sk/express-192.mp3",
-                    "https://stream.express.sk/express-128.mp3"
-                ]
-            },
-            {
-                name: "Fun Radio",
-                bitrate: "192 kbps",
-                urls: [
-                    "https://live.funradio.sk:8000/fun192.mp3",
-                    "https://live.funradio.sk:8000/fun128.mp3"
-                ]
-            },
-            {
-                name: "Rádio Jemné",
-                bitrate: "128 kbps",
-                urls: [
-                    "https://stream.jemne.sk/jemne128.mp3"
-                ]
-            },
-            {
-                name: "Rádio Vlna",
-                bitrate: "128 kbps",
-                urls: [
-                    "https://stream.radiovlna.sk/vlna128.mp3"
-                ]
-            }
-        ];
+        'use strict';
 
-        let currentStreamIndex = parseInt(localStorage.getItem('igor_last_stream')) || 0;
-        let currentUrlIndex = 0;
-        let isPlaying = false;
-        let castDeviceName = localStorage.getItem('igor_last_cast_name') || "Chromecast";
+        // =====================================================================
+        //  DÁTA: ponuka streamov
+        //  Každá stanica má zoznam kandidátskych URL. Aplikácia ich na tomto
+        //  zariadení postupne OVERÍ (skutočne ich skúsi načítať) a použije prvý,
+        //  ktorý funguje. Ak nefunguje žiadny, pokúsi sa nájsť živý stream
+        //  v databáze radio-browser.info. Ak ani to nevyjde, ponúkne alternatívy.
+        // =====================================================================
+        const CT = { mp3: 'audio/mpeg', aac: 'audio/aac', ogg: 'audio/ogg' };
+        function guessType(url) {
+            const p = url.split('?')[0].toLowerCase();
+            if (p.endsWith('.aac') || p.endsWith('.aacp')) return CT.aac;
+            if (p.endsWith('.ogg') || p.endsWith('.opus')) return CT.ogg;
+            return CT.mp3;
+        }
+        const U = (...urls) => urls.map(url => ({ url, type: guessType(url) }));
 
-        const audioElement = document.getElementById('audioElement');
-        const displayTitle = document.getElementById('displayTitle');
-        const displayStatus = document.getElementById('displayStatus');
-        const displayBitrate = document.getElementById('displayBitrate');
-        const displayPanel = document.getElementById('displayPanel');
-        const playIcon = document.getElementById('playIcon');
-        const playText = document.getElementById('playText');
-        const volumeRange = document.getElementById('volumeRange');
-        const castLabel = document.getElementById('castLabel');
-
-        // Inicializácia Google Cast API
-        window['__onGCastApiAvailable'] = function(isAvailable) {
-            if (isAvailable) {
-                initializeCastContext();
-            }
+        const GROUPS = {
+            sk: 'Slovenské rádiá',
+            cz: 'České rádiá (alternatíva)',
+            music: 'Hudobné kanály & playlisty'
         };
 
-        function initializeCastContext() {
-            const castContext = cast.framework.CastContext.getInstance();
-            castContext.setOptions({
-                receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-                autoJoinPolicy: chrome.cast.AutoJoinPolicy.TAB_AND_ORIGIN_SCOPED
-            });
+        const STVR = 'https://icecast.stv.livebox.sk/';
+        const BAUER = 'https://stream.bauermedia.sk/';
+        const ROZHLAS = 'https://rozhlas.stream/';
+        const SOMA = 'https://ice.somafm.com/';
+        const RP = 'https://stream.radioparadise.com/';
 
-            castContext.addEventListener(
-                cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
-                (event) => {
-                    const session = castContext.getCurrentSession();
-                    if (session) {
-                        castDeviceName = session.getCastDevice().friendlyName || "Pripojené";
-                        castLabel.textContent = castDeviceName;
-                        localStorage.setItem('igor_last_cast_name', castDeviceName);
-                        // Ak beží lokálne prehrávanie, môžeme ho zastaviť a poslať na Chromecast
-                        if (isPlaying) {
-                            sendToCast();
-                        }
-                    } else {
-                        castLabel.textContent = "Chromecast";
-                    }
-                }
-            );
-            
-            const session = castContext.getCurrentSession();
-            if (session) {
-                castDeviceName = session.getCastDevice().friendlyName || "Chromecast";
-                castLabel.textContent = castDeviceName;
-            }
+        // search = dopyt do radio-browser.info, match = text, ktorý musí byť v názve nájdenej stanice
+        const stations = [
+            // --- Slovenské rádiá ---
+            { id: 'slovensko', group: 'sk', name: 'Rádio Slovensko', info: 'MP3 128', urls: U(STVR + 'slovensko_128.mp3'), search: 'Radio Slovensko', match: 'slovensko', country: 'SK' },
+            { id: 'fm',        group: 'sk', name: 'Rádio_FM',        info: 'MP3 128', urls: U(STVR + 'fm_128.mp3'), search: 'Radio FM', match: 'radio fm', country: 'SK' },
+            { id: 'devin',     group: 'sk', name: 'Rádio Devín',     info: 'MP3 128', urls: U(STVR + 'devin_128.mp3', STVR + 'devin_256.mp3'), search: 'Radio Devin', match: 'devin', country: 'SK' },
+            { id: 'regina',    group: 'sk', name: 'Rádio Regina',    info: 'MP3 128', urls: U(STVR + 'regina_ba_128.mp3', STVR + 'regina_ke_128.mp3', STVR + 'regina_bb_128.mp3'), search: 'Radio Regina', match: 'regina', country: 'SK' },
+            { id: 'expres',    group: 'sk', name: 'Rádio Expres',    info: 'MP3 128', urls: U(BAUER + 'expres-hi.mp3'), search: 'Radio Expres', match: 'expres', country: 'SK' },
+            { id: 'europa2',   group: 'sk', name: 'Európa 2',        info: 'MP3 128', urls: U(BAUER + 'europa2-hi.mp3'), search: 'Europa 2', match: 'europa 2', country: 'SK' },
+            { id: 'melody',    group: 'sk', name: 'Rádio Melody',    info: 'MP3',     urls: U(BAUER + 'melody-hi.mp3', BAUER + 'melody-low.mp3'), search: 'Radio Melody', match: 'melody', country: 'SK' },
+            { id: 'rock',      group: 'sk', name: 'Rádio Rock',      info: 'MP3',     urls: U(BAUER + 'rock-hi.mp3'), search: 'Radio Rock', match: 'rock', country: 'SK' },
+            { id: 'fun',       group: 'sk', name: 'Fun Rádio',       info: 'MP3 128', urls: U('https://live.funradio.sk:8000/fun128.mp3', 'https://live.funradio.sk:8000/fun192.mp3'), search: 'Fun Radio', match: 'fun', country: 'SK' },
+            { id: 'jemne',     group: 'sk', name: 'Rádio Jemné',     info: 'MP3 128', urls: U('https://stream.jemne.sk/jemne128.mp3'), search: 'Radio Jemne', match: 'jemne', country: 'SK' },
+            { id: 'vlna',      group: 'sk', name: 'Rádio Vlna',      info: 'MP3 128', urls: U('https://stream.radiovlna.sk/vlna128.mp3'), search: 'Radio Vlna', match: 'vlna', country: 'SK' },
+
+            // --- České rádiá (blízka alternatíva, stabilné HTTPS streamy Českého rozhlasu) ---
+            { id: 'cro-zurnal', group: 'cz', name: 'ČRo Radiožurnál', info: 'MP3 128', urls: U(ROZHLAS + 'radiozurnal.mp3', ROZHLAS + 'radiozurnal_high.aac') },
+            { id: 'cro-dvojka', group: 'cz', name: 'ČRo Dvojka',      info: 'MP3 128', urls: U(ROZHLAS + 'dvojka.mp3', ROZHLAS + 'dvojka_high.aac') },
+            { id: 'cro-vltava', group: 'cz', name: 'ČRo Vltava',      info: 'MP3 128', urls: U(ROZHLAS + 'vltava.mp3', ROZHLAS + 'vltava_high.aac') },
+            { id: 'cro-jazz',   group: 'cz', name: 'ČRo Jazz',        info: 'MP3 128', urls: U(ROZHLAS + 'jazz.mp3', ROZHLAS + 'jazz_high.aac') },
+            { id: 'cro-wave',   group: 'cz', name: 'ČRo Radio Wave',  info: 'MP3 128', urls: U(ROZHLAS + 'radio_wave.mp3', ROZHLAS + 'radio_wave_high.aac') },
+
+            // --- Hudobné kanály (kurátorované playlisty bez reklám/hovoreného slova) ---
+            { id: 'soma-groove', group: 'music', name: 'SomaFM – Groove Salad',   info: 'MP3 128', urls: U(SOMA + 'groovesalad', SOMA + 'groovesalad-128-mp3'), search: 'Groove Salad', match: 'groove salad' },
+            { id: 'soma-lush',   group: 'music', name: 'SomaFM – Lush',           info: 'MP3 128', urls: U(SOMA + 'lush', SOMA + 'lush-128-mp3'), search: 'SomaFM Lush', match: 'lush' },
+            { id: 'soma-agent',  group: 'music', name: 'SomaFM – Secret Agent',   info: 'MP3 128', urls: U(SOMA + 'secretagent', SOMA + 'secretagent-128-mp3'), search: 'Secret Agent', match: 'secret agent' },
+            { id: 'soma-space',  group: 'music', name: 'SomaFM – Deep Space One', info: 'MP3 128', urls: U(SOMA + 'deepspaceone', SOMA + 'deepspaceone-128-mp3'), search: 'Deep Space One', match: 'deep space one' },
+            { id: 'soma-drone',  group: 'music', name: 'SomaFM – Drone Zone',     info: 'MP3 128', urls: U(SOMA + 'dronezone', SOMA + 'dronezone-128-mp3'), search: 'Drone Zone', match: 'drone zone' },
+            { id: 'soma-indie',  group: 'music', name: 'SomaFM – Indie Pop Rocks', info: 'MP3 128', urls: U(SOMA + 'indiepop', SOMA + 'indiepop-128-mp3'), search: 'Indie Pop Rocks', match: 'indie pop rocks' },
+            { id: 'rp-main',     group: 'music', name: 'Radio Paradise – Main Mix', info: 'MP3 128', urls: U(RP + 'mp3-128', RP + 'aac-128'), search: 'Radio Paradise', match: 'radio paradise' },
+            { id: 'rp-mellow',   group: 'music', name: 'Radio Paradise – Mellow',   info: 'MP3 128', urls: U(RP + 'mellow-128'), search: 'Radio Paradise Mellow', match: 'mellow' },
+            { id: 'rp-rock',     group: 'music', name: 'Radio Paradise – Rock',     info: 'MP3 128', urls: U(RP + 'rock-128'), search: 'Radio Paradise Rock', match: 'rock' }
+        ];
+
+        // Preferované Cast zariadenie (výber zariadenia v dialógu Chrome sa z webu nedá predvoliť,
+        // preto aplikácia po pripojení skontroluje názov a ponúkne prepnutie)
+        const PREFERRED_CAST = /pioneer/i;
+
+        // =====================================================================
+        //  STAV
+        // =====================================================================
+        const HEALTH_KEY = 'igor_health_v2';
+        const HEALTH_TTL_OK = 3 * 3600 * 1000;   // overený stream platí 3 hodiny
+        const HEALTH_TTL_BAD = 30 * 60 * 1000;   // neprehrateľný sa skúsi znova po 30 minútach
+
+        let current = stations.find(s => s.id === localStorage.getItem('igor_last_station')) || stations[0];
+        let desired = false;            // používateľ chce, aby hralo
+        let mode = null;                // 'cast' | 'local' | null (až keď prehrávanie reálne beží)
+        let playToken = 0;              // zrušenie rozbehnutých/zastaralých asynchrónnych krokov
+        let busy = false;               // prebieha spúšťanie streamu
+        let breaking = false;
+        let resumeAfterReconnect = false;
+        let expectingEnd = false;       // úmyselné ukončenie Cast relácie
+        let healthStrikes = 0;
+        let preferredDismissed = false;
+        let recoverLog = [];
+        let castReady = false;
+        let castInitDone = false;
+        let castDeviceName = localStorage.getItem('igor_last_cast_name') || '';
+
+        const $ = id => document.getElementById(id);
+        const audio = $('audioElement');
+        const displayTitle = $('displayTitle');
+        const displayStatus = $('displayStatus');
+        const displayBitrate = $('displayBitrate');
+        const displayPanel = $('displayPanel');
+        const playIcon = $('playIcon');
+        const playText = $('playText');
+        const volumeRange = $('volumeRange');
+        const castLabel = $('castLabel');
+
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+        function withTimeout(promise, ms) {
+            let t;
+            return Promise.race([
+                Promise.resolve(promise),
+                new Promise((_, rej) => { t = setTimeout(() => rej(new Error('timeout')), ms); })
+            ]).finally(() => clearTimeout(t));
+        }
+        const norm = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[_\-]+/g, ' ').toLowerCase();
+
+        // =====================================================================
+        //  OZNÁMENIA
+        // =====================================================================
+        function showNotice(text, actions = [], kind = 'warn') {
+            const n = $('notice');
+            n.className = 'notice ' + kind;
+            n.hidden = false;
+            $('noticeText').textContent = text;
+            const box = $('noticeActions');
+            box.innerHTML = '';
+            actions.forEach(a => {
+                const b = document.createElement('button');
+                b.className = 'notice-btn';
+                b.textContent = a.label;
+                b.onclick = () => { hideNotice(); a.fn(); };
+                box.appendChild(b);
+            });
+        }
+        function hideNotice() { $('notice').hidden = true; }
+        $('noticeClose').onclick = hideNotice;
+
+        // =====================================================================
+        //  VYKRESLENIE UI
+        // =====================================================================
+        function setStatus(t) { displayStatus.textContent = t; }
+
+        function render(statusText) {
+            displayTitle.textContent = current.name;
+            displayBitrate.textContent = current.info;
+            playIcon.textContent = desired ? '⏸' : '▶';
+            playText.textContent = desired ? 'Zastaviť' : 'Prehrať';
+            displayPanel.classList.toggle('playing', desired && !!mode);
+            document.querySelectorAll('.stream-card').forEach(c => c.classList.toggle('active', c.dataset.id === current.id));
+            if (statusText !== undefined) setStatus(statusText || (desired ? '' : 'Pripravené'));
+            updateMediaSession();
         }
 
-        // Vykreslenie zoznamu streamov
         function renderStreams() {
-            const container = document.getElementById('streamsList');
-            container.innerHTML = '';
-
-            streams.forEach((stream, index) => {
+            const list = $('streamsList');
+            list.innerHTML = '';
+            let lastGroup = null;
+            stations.forEach(st => {
+                if (st.group !== lastGroup) {
+                    const h = document.createElement('div');
+                    h.className = 'group-title';
+                    h.textContent = GROUPS[st.group];
+                    list.appendChild(h);
+                    lastGroup = st.group;
+                }
                 const card = document.createElement('div');
-                card.className = `stream-card ${index === currentStreamIndex ? 'active' : ''}`;
-                card.onclick = () => selectStream(index);
-                card.innerHTML = `
-                    <div class="stream-info">
-                        <div id="health-${index}" class="health-indicator" title="Testujem..."></div>
-                        <div class="stream-name">${stream.name}</div>
-                    </div>
-                    <div class="stream-meta-right">
-                        <span class="stream-bitrate">${stream.bitrate}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-                checkStreamHealth(index, stream.urls[0]);
+                card.className = 'stream-card';
+                card.dataset.id = st.id;
+                card.onclick = () => playStation(st);
+
+                const info = document.createElement('div');
+                info.className = 'stream-info';
+                const dot = document.createElement('div');
+                dot.id = 'health-' + st.id;
+                dot.className = 'health-indicator';
+                const name = document.createElement('div');
+                name.className = 'stream-name';
+                name.textContent = st.name;
+                info.append(dot, name);
+
+                const right = document.createElement('div');
+                right.className = 'stream-meta-right';
+                const br = document.createElement('span');
+                br.className = 'stream-bitrate';
+                br.textContent = st.info;
+                right.appendChild(br);
+
+                card.append(info, right);
+                list.appendChild(card);
+                paintHealth(st);
             });
         }
 
-        // Test dostupnosti streamu
-        async function checkStreamHealth(index, url) {
-            const indicator = document.getElementById(`health-${index}`);
-            if (!indicator) return;
+        function paintHealth(st) {
+            const el = $('health-' + st.id);
+            if (!el) return;
+            let cls = '', title = 'Zatiaľ neoverené';
+            if (st.checking) { cls = 'checking'; title = 'Overujem, či to tento Chromebook vie prehrať…'; }
+            else if (st.checkedAt && st.ok) { cls = 'ok'; title = 'Overené – Chromebook tento stream vie prehrať'; }
+            else if (st.checkedAt) { cls = 'error'; title = 'Stream je offline alebo ho toto zariadenie nevie prehrať'; }
+            el.className = 'health-indicator ' + cls;
+            el.title = title;
+        }
+
+        // =====================================================================
+        //  OVERENIE PREHRATEĽNOSTI NA TOMTO ZARIADENÍ
+        // =====================================================================
+        function loadHealth() {
             try {
-                // Použijeme fetch s mode no-cors na overenie dostupnosti koncového bodu
-                await fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-cache' });
-                indicator.className = 'health-indicator ok';
-                indicator.title = 'Stream je dostupný';
+                const h = JSON.parse(localStorage.getItem(HEALTH_KEY) || '{}');
+                stations.forEach(s => {
+                    const e = h[s.id];
+                    if (e) { s.checkedAt = e.t; s.ok = e.ok; s.url = e.url || null; s.type = e.type || null; }
+                });
+            } catch (e) { /* poškodené dáta – ignorujeme */ }
+        }
+        function saveHealth() {
+            try {
+                const h = {};
+                stations.forEach(s => { if (s.checkedAt) h[s.id] = { t: s.checkedAt, ok: !!s.ok, url: s.url || null, type: s.type || null }; });
+                localStorage.setItem(HEALTH_KEY, JSON.stringify(h));
+            } catch (e) { /* plné úložisko – nevadí */ }
+        }
+        const isFresh = s => !!s.checkedAt && (Date.now() - s.checkedAt) < (s.ok ? HEALTH_TTL_OK : HEALTH_TTL_BAD);
+
+        // Skutočne skúsi stream načítať (rovnako ako ho potom prehrá prehliadač) a zistí, či dorazia zvukové dáta
+        function probe(url, timeout = 9000) {
+            return new Promise(resolve => {
+                if (location.protocol === 'https:' && /^http:/i.test(url)) {
+                    return resolve({ ok: false, reason: 'mixed-content' });   // HTTP stream na HTTPS stránke prehliadač zablokuje
+                }
+                const a = new Audio();
+                a.preload = 'auto';
+                let done = false;
+                const finish = r => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(t);
+                    a.removeAttribute('src');
+                    try { a.load(); } catch (e) { /* nič */ }
+                    resolve(r);
+                };
+                const t = setTimeout(() => finish({ ok: false, reason: 'timeout' }), timeout);
+                a.addEventListener('canplay', () => finish({ ok: true }), { once: true });
+                a.addEventListener('loadeddata', () => finish({ ok: true }), { once: true });
+                a.addEventListener('error', () => finish({ ok: false, reason: 'error', code: a.error && a.error.code }), { once: true });
+                a.src = url;
+            });
+        }
+
+        const RB_HOSTS = [
+            'https://de1.api.radio-browser.info',
+            'https://de2.api.radio-browser.info',
+            'https://nl1.api.radio-browser.info',
+            'https://at1.api.radio-browser.info'
+        ];
+        function codecType(codec) {
+            if (/aac/i.test(codec || '')) return CT.aac;
+            if (/ogg|vorbis|opus/i.test(codec || '')) return CT.ogg;
+            return CT.mp3;
+        }
+
+        // Záloha: ak žiadna známa URL nejde, nájde aktuálne živé HTTPS streamy v databáze radio-browser.info
+        async function discover(st) {
+            if (!st.search) return [];
+            if (st._found) return st._found;
+            let list = null;
+            for (const host of RB_HOSTS) {
+                const ctrl = new AbortController();
+                const t = setTimeout(() => ctrl.abort(), 6000);
+                try {
+                    const q = new URLSearchParams({ name: st.search, hidebroken: 'true', order: 'clickcount', reverse: 'true', limit: '15' });
+                    if (st.country) q.set('countrycode', st.country);
+                    const r = await fetch(`${host}/json/stations/search?${q}`, { signal: ctrl.signal });
+                    if (!r.ok) continue;
+                    list = await r.json();
+                    break;
+                } catch (e) { /* skúsime ďalší server */ }
+                finally { clearTimeout(t); }
+            }
+            if (!Array.isArray(list)) return [];          // nič neodpovedalo – nezapamätáme si prázdny výsledok
+            const have = new Set(st.urls.map(c => c.url));
+            const match = norm(st.match || st.search);
+            st._found = list
+                .filter(x => x && x.url_resolved && /^https:/i.test(x.url_resolved) && x.lastcheckok === 1 && !x.hls &&
+                             norm(x.name).includes(match) && !have.has(x.url_resolved))
+                .slice(0, 4)
+                .map(x => ({ url: x.url_resolved, type: codecType(x.codec) }));
+            return st._found;
+        }
+
+        function markOk(st, cand) {
+            st.ok = true; st.url = cand.url; st.type = cand.type; st.checkedAt = Date.now();
+            return { url: cand.url, type: cand.type };
+        }
+
+        // Nájde pre stanicu prvú URL, ktorú vie tento Chromebook prehrať. Vráti {url,type} alebo null.
+        async function resolveStation(st, { force = false, skip = new Set() } = {}) {
+            while (st._resolving) { try { await st._resolving; } catch (e) { /* nič */ } }
+            if (!force && st.ok && st.url && isFresh(st) && !skip.has(st.url)) return { url: st.url, type: st.type };
+
+            const run = (async () => {
+                st.checking = true; paintHealth(st);
+                try {
+                    for (const c of st.urls) {
+                        if (skip.has(c.url)) continue;
+                        if ((await probe(c.url)).ok) return markOk(st, c);
+                    }
+                    for (const c of await discover(st)) {
+                        if (skip.has(c.url)) continue;
+                        if ((await probe(c.url)).ok) return markOk(st, c);
+                    }
+                    st.ok = false; st.url = null; st.checkedAt = Date.now();
+                    return null;
+                } finally {
+                    st.checking = false; saveHealth(); paintHealth(st);
+                }
+            })();
+            st._resolving = run;
+            try { return await run; } finally { st._resolving = null; }
+        }
+
+        async function checkAll(force = false) {
+            if (force) stations.forEach(s => { s._found = null; });
+            const queue = stations.filter(s => force || !isFresh(s));
+            const worker = async () => { while (queue.length) { await resolveStation(queue.shift(), { force }); } };
+            await Promise.all([worker(), worker(), worker()]);
+        }
+
+        // Alternatívy: najprv z rovnakej skupiny, len také, ktoré tento Chromebook overene vie prehrať
+        async function findAlternatives(st, n = 3) {
+            const pool = stations.filter(s => s !== st).sort((a, b) => (b.group === st.group) - (a.group === st.group));
+            const out = pool.filter(s => s.ok && isFresh(s)).slice(0, n);
+            for (const s of pool) {
+                if (out.length >= n) break;
+                if (out.includes(s) || (isFresh(s) && !s.ok)) continue;
+                if (await resolveStation(s)) out.push(s);
+            }
+            return out;
+        }
+
+        // =====================================================================
+        //  PREHRÁVANIE (spoločná logika pre Chromecast aj lokálne)
+        // =====================================================================
+        function cancelPlayback() { playToken++; busy = false; }
+
+        function cleanupLocal() {
+            try { audio.pause(); } catch (e) { /* nič */ }
+            audio.removeAttribute('src');
+            try { audio.load(); } catch (e) { /* nič */ }   // preruší sťahovanie živého streamu
+        }
+
+        function stopCastMedia() {
+            const s = castSession();
+            const m = s && s.getMediaSession();
+            if (m && m.playerState && m.playerState !== 'IDLE') {
+                // Zastaví len médium; relácia s Chromecastom ZOSTÁVA, takže ďalší stream sa dá hneď spustiť
+                try { m.stop(new chrome.cast.media.StopRequest(), () => {}, e => console.warn('Cast stop:', e)); } catch (e) { /* nič */ }
+            }
+        }
+
+        function stopPlayback(statusText) {
+            cancelPlayback();
+            desired = false; mode = null; resumeAfterReconnect = false;
+            cleanupLocal();
+            stopCastMedia();
+            render(statusText || 'Zastavené');
+        }
+
+        async function playStation(st, opts = {}) {
+            const token = ++playToken;
+            current = st;
+            try { localStorage.setItem('igor_last_station', st.id); } catch (e) { /* nič */ }
+            desired = true; busy = true; mode = null;
+            hideNotice();
+            render('Overujem stream…');
+            const failed = new Set(opts.avoid || []);
+
+            try {
+                for (;;) {
+                    const cand = await resolveStation(st, { skip: failed });
+                    if (token !== playToken) return;
+                    if (!cand) { await onUnavailable(st, token); return; }
+
+                    let ok;
+                    if (castSession()) {
+                        const h = await checkCastHealth();
+                        if (token !== playToken) return;
+                        if (!h.ok) { await handleCastBroken(h.reason, true); return; }
+                        setStatus('Posielam na ' + (castDeviceName || 'Chromecast') + '…');
+                        ok = await castLoad(st, cand, token);
+                        if (token !== playToken) return;
+                        if (ok === 'broken') { await handleCastBroken('loadMedia', true); return; }
+                    } else {
+                        setStatus('Spúšťam prehrávanie…');
+                        ok = await localPlay(cand, token);
+                        if (token !== playToken) return;
+                    }
+
+                    if (ok === true) return;
+                    failed.add(cand.url);      // táto URL zlyhala pri skutočnom prehrávaní – skúsime ďalšiu
+                    st.checkedAt = 0;          // pri ďalšom výbere sa stream overí znova
+                }
+            } finally {
+                if (token === playToken) busy = false;
+            }
+        }
+
+        async function localPlay(cand, token) {
+            audio.src = cand.url;
+            try {
+                await withTimeout(audio.play(), 12000);
             } catch (e) {
-                indicator.className = 'health-indicator error';
-                indicator.title = 'Stream môže byť blokovaný alebo offline';
+                console.warn('Lokálne prehrávanie zlyhalo:', cand.url, e);
+                if (token === playToken) cleanupLocal();
+                return false;
             }
+            if (token !== playToken) return false;
+            mode = 'local';
+            render('Prehráva sa na Chromebooku');
+            return true;
         }
 
-        // Výber streamu
-        function selectStream(index) {
-            currentStreamIndex = index;
-            currentUrlIndex = 0;
-            localStorage.setItem('igor_last_stream', index);
-            
-            // Aktualizácia aktívnej triedy v UI
-            document.querySelectorAll('.stream-card').forEach((card, idx) => {
-                if (idx === index) card.classList.add('active');
-                else card.classList.remove('active');
-            });
-
-            const stream = streams[currentStreamIndex];
-            displayTitle.textContent = stream.name;
-            displayBitrate.textContent = stream.bitrate;
-
-            if (isPlaying) {
-                playCurrentStream();
-            }
-        }
-
-        // Spustenie / zastavenie prehrávania
-        function togglePlayPause() {
-            const stream = streams[currentStreamIndex];
-            const castContext = cast.framework.CastContext ? cast.framework.CastContext.getInstance() : null;
-            const session = castContext ? castContext.getCurrentSession() : null;
-
-            if (isPlaying) {
-                if (session) {
-                    session.endSession(true);
-                }
-                audioElement.pause();
-                setPlayingState(false);
+        async function onUnavailable(st, token) {
+            desired = false; mode = null; busy = false;
+            cleanupLocal(); stopCastMedia();
+            render('Nedá sa prehrať');
+            showNotice(`„${st.name}“ sa nepodarilo spustiť. Hľadám alternatívy, ktoré tento Chromebook vie prehrať…`, [], 'warn');
+            const alts = await findAlternatives(st, 3);
+            if (token !== playToken) return;
+            if (alts.length) {
+                showNotice(`„${st.name}“ je momentálne offline alebo ho toto zariadenie nevie prehrať. Ponúkam overené alternatívy:`,
+                    alts.map(a => ({ label: '▶ ' + a.name, fn: () => playStation(a) })), 'info');
             } else {
-                if (session) {
-                    sendToCast();
+                showNotice(`„${st.name}“ sa nepodarilo spustiť a nenašla sa žiadna overená alternatíva. Skontrolujte internetové pripojenie a skúste „Skontrolovať dostupnosť“.`,
+                    [{ label: '↻ Skontrolovať dostupnosť', fn: () => checkAll(true) }], 'error');
+            }
+        }
+
+        // Po neočakávanom páde streamu sa najprv skúsi ten istý stream znova, potom iná URL, potom alternatívy
+        function recover() {
+            const now = Date.now();
+            recoverLog = recoverLog.filter(t => now - t < 60000);
+            recoverLog.push(now);
+            if (recoverLog.length > 4) {
+                stopPlayback('Prehrávanie zlyháva');
+                onUnavailable(current, playToken);
+                return;
+            }
+            const avoid = (recoverLog.length > 1 && current.url) ? new Set([current.url]) : undefined;
+            playStation(current, { avoid });
+        }
+
+        // Lokálne udalosti prehrávača (pád spojenia, koniec streamu)
+        audio.addEventListener('playing', () => { if (mode === 'local') setStatus('Prehráva sa na Chromebooku'); });
+        audio.addEventListener('waiting', () => { if (mode === 'local' && desired && !busy) setStatus('Načítavam…'); });
+        const onLocalDrop = () => { if (!busy && desired && mode === 'local') recover(); };
+        audio.addEventListener('error', onLocalDrop);
+        audio.addEventListener('ended', onLocalDrop);
+
+        function togglePlayPause() {
+            if (desired) stopPlayback();
+            else playStation(current);
+        }
+
+        // =====================================================================
+        //  CHROMECAST
+        // =====================================================================
+        function ctx() { return castReady ? cast.framework.CastContext.getInstance() : null; }
+        function castSession() { const c = ctx(); return c ? c.getCurrentSession() : null; }
+
+        function setCastInfo(kind, text) {
+            $('castDot').className = 'health-indicator ' + (kind || '');
+            $('castInfo').textContent = text;
+        }
+
+        function updateCastInfo(h) {
+            if (!castReady) return;
+            const c = ctx();
+            const S = cast.framework.CastState;
+            const sess = c.getCurrentSession();
+            if (sess) {
+                const name = (sess.getCastDevice() && sess.getCastDevice().friendlyName) || castDeviceName || 'Chromecast';
+                const unstable = (h && !h.ok) || healthStrikes > 0;
+                setCastInfo(unstable ? 'warn' : 'ok', unstable ? `Spojenie s „${name}“ nie je stabilné` : `Pripojené: ${name}`);
+                return;
+            }
+            const state = c.getCastState();
+            if (state === S.NO_DEVICES_AVAILABLE) setCastInfo('error', 'Nenašiel som žiadne Cast zariadenie – Chromebook aj Pioneer musia byť v tej istej Wi-Fi sieti');
+            else if (state === S.CONNECTING) setCastInfo('checking', 'Pripájam…');
+            else setCastInfo('', 'Nepripojené – klepnite na Chromecast a vyberte zariadenie');
+        }
+
+        function initCast(available) {
+            if (castInitDone) return;
+            castInitDone = true;
+            if (!available || !window.cast || !cast.framework) {
+                castReady = false;
+                $('castBtn').disabled = true;
+                setCastInfo('error', 'Chromecast nie je v tomto prehliadači dostupný (použite Chrome) – hrá sa lokálne');
+                return;
+            }
+            castReady = true;
+            const c = cast.framework.CastContext.getInstance();
+            c.setOptions({
+                receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+                autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,   // znovu sa pripojí aj po otvorení v inom okne/PWA
+                resumeSavedSession: true
+            });
+            c.addEventListener(cast.framework.CastContextEventType.CAST_STATE_CHANGED, () => updateCastInfo());
+            c.addEventListener(cast.framework.CastContextEventType.SESSION_STATE_CHANGED, onSessionState);
+            const s = c.getCurrentSession();
+            if (s) onSessionUp(s, true);
+            updateCastInfo();
+            setInterval(castHealthTick, 10000);
+        }
+
+        function onSessionState(e) {
+            const S = cast.framework.SessionState;
+            switch (e.sessionState) {
+                case S.SESSION_STARTED: onSessionUp(e.session, false); break;
+                case S.SESSION_RESUMED: onSessionUp(e.session, true); break;
+                case S.SESSION_ENDED: onSessionDown(); break;
+                case S.SESSION_START_FAILED:
+                    updateCastInfo();
+                    showNotice(`Pripojenie k Chromecastu zlyhalo (${e.errorCode || 'neznáma chyba'}). Skontrolujte, či sú Chromebook aj Pioneer v tej istej Wi-Fi sieti a či je Pioneer zapnutý.`,
+                        [{ label: 'Skúsiť znova', fn: reconnectCast }], 'error');
+                    break;
+            }
+        }
+
+        const attachedSessions = new WeakSet();
+        const boundMedia = new WeakSet();
+        function bindMedia(m) {
+            if (!m || boundMedia.has(m)) return;
+            boundMedia.add(m);
+            m.addUpdateListener(alive => onCastMediaUpdate(m, alive));
+        }
+        function attachSession(s) {
+            if (attachedSessions.has(s)) return;
+            attachedSessions.add(s);
+            s.addEventListener(cast.framework.SessionEventType.MEDIA_SESSION, ev => bindMedia(ev.mediaSession));
+            s.addEventListener(cast.framework.SessionEventType.VOLUME_CHANGED, ev => {
+                if (typeof ev.volume === 'number') volumeRange.value = ev.volume;
+            });
+            bindMedia(s.getMediaSession());
+        }
+
+        function onSessionUp(session, resumed) {
+            attachSession(session);
+            expectingEnd = false;
+            healthStrikes = 0;
+            const dev = session.getCastDevice();
+            castDeviceName = (dev && dev.friendlyName) || 'Chromecast';
+            castLabel.textContent = castDeviceName;
+            try { localStorage.setItem('igor_last_cast_name', castDeviceName); } catch (e) { /* nič */ }
+            const v = session.getVolume();
+            if (typeof v === 'number') volumeRange.value = v;
+            updateCastInfo();
+
+            let started = null;
+            if (resumeAfterReconnect || (desired && mode !== 'cast')) {
+                resumeAfterReconnect = false;
+                started = playStation(current);            // prehrávanie sa presunie na Chromecast
+            } else if (resumed) {
+                // Po obnovení stránky zistíme, čo na zariadení práve hrá
+                const m = session.getMediaSession();
+                if (m && m.media && m.playerState === 'PLAYING') {
+                    const found = stations.find(s => s.urls.some(c => c.url === m.media.contentId) || s.url === m.media.contentId);
+                    if (found) current = found;
+                    desired = true; mode = 'cast';
+                    render('Casting na ' + castDeviceName);
                 } else {
-                    playCurrentStream();
+                    render();
+                }
+            }
+
+            // Upozornenie na nepreferované zariadenie až po rozbehnutí streamu (spustenie prehrávania zatvára oznámenia)
+            Promise.resolve(started).then(() => {
+                if (castSession() === session && $('notice').hidden) checkPreferred(session);
+            });
+        }
+
+        function onSessionDown() {
+            castLabel.textContent = 'Chromecast';
+            updateCastInfo();
+            if (expectingEnd) return;                      // ukončili sme ho sami (opätovné pripojenie)
+            if (desired && mode === 'cast') {
+                cancelPlayback(); desired = false; mode = null;
+                render('Spojenie prerušené');
+                showNotice(`Spojenie s „${castDeviceName || 'Chromecastom'}“ bolo prerušené.`, [
+                    { label: 'Pripojiť znova', fn: () => { resumeAfterReconnect = true; reconnectCast(); } },
+                    { label: 'Hrať na Chromebooku', fn: () => playStation(current) }
+                ], 'warn');
+            }
+        }
+
+        function checkPreferred(session) {
+            const dev = session.getCastDevice();
+            const name = (dev && dev.friendlyName) || '';
+            if (!name || PREFERRED_CAST.test(name) || preferredDismissed) return;
+            showNotice(`Pripojené k „${name}“, ale preferovaný je Pioneer.`, [
+                { label: 'Prepnúť na Pioneer', fn: () => { resumeAfterReconnect = desired; reconnectCast(); } },
+                { label: 'Ponechať', fn: () => { preferredDismissed = true; } }
+            ], 'info');
+        }
+
+        // Priebežné sledovanie stavu prehrávania na zariadení
+        function onCastMediaUpdate(m, alive) {
+            const s = castSession();
+            if (!s || m !== s.getMediaSession()) return;   // stará relácia
+            if (busy || !desired || mode !== 'cast') return;
+            const st = m.playerState;
+            if (st === 'PLAYING') setStatus('Casting na ' + castDeviceName);
+            else if (st === 'BUFFERING') setStatus('Načítavam…');
+            else if (st === 'PAUSED') setStatus('Pozastavené na zariadení');
+            else if (st === 'IDLE') {
+                if (m.idleReason === 'ERROR') {
+                    recover();
+                } else {                                   // zastavené mimo aplikácie (diaľkový ovládač, iný odosielateľ)
+                    desired = false; mode = null;
+                    render('Zastavené na zariadení');
                 }
             }
         }
 
-        function playCurrentStream() {
-            const stream = streams[currentStreamIndex];
-            const url = stream.urls[currentUrlIndex];
-            
-            audioElement.src = url;
-            audioElement.play().then(() => {
-                setPlayingState(true);
-                displayStatus.textContent = "Prehráva sa";
-            }).catch(error => {
-                console.warn(`Link ${url} zlyhal, skúšam alternatívny...`);
-                if (currentUrlIndex < stream.urls.length - 1) {
-                    currentUrlIndex++;
-                    playCurrentStream();
-                } else {
-                    displayStatus.textContent = "Chyba prehrávania";
-                    setPlayingState(false);
+        const HARD_ERRORS = ['timeout', 'session_error', 'channel_error', 'receiver_unavailable', 'api_not_initialized'];
+
+        async function castLoad(st, cand, token) {
+            const session = castSession();
+            if (!session) return 'broken';
+            cleanupLocal();                                // lokálne nesmie hrať popri Chromecaste
+            const info = new chrome.cast.media.MediaInfo(cand.url, cand.type || CT.mp3);
+            info.streamType = chrome.cast.media.StreamType.LIVE;
+            const md = new chrome.cast.media.GenericMediaMetadata();
+            md.title = st.name;
+            md.subtitle = 'Igor Stream';
+            info.metadata = md;
+            const req = new chrome.cast.media.LoadRequest(info);
+            req.autoplay = true;
+
+            let err;
+            try { err = await withTimeout(session.loadMedia(req), 15000); }
+            catch (e) { console.warn('loadMedia:', e); return 'broken'; }   // nič neodpovedá = mŕtve spojenie
+            if (token !== playToken) return false;
+            if (err) {
+                console.warn('Cast loadMedia chyba:', err);
+                return HARD_ERRORS.includes(String(err).toLowerCase()) ? 'broken' : false;
+            }
+            bindMedia(session.getMediaSession());
+
+            // Overíme, že zariadenie stream naozaj hrá
+            const t0 = Date.now();
+            while (Date.now() - t0 < 12000) {
+                if (token !== playToken) return false;
+                const m = session.getMediaSession();
+                if (m && m.playerState === 'PLAYING') {
+                    mode = 'cast';
+                    render('Casting na ' + castDeviceName);
+                    return true;
+                }
+                if (m && m.playerState === 'IDLE' && m.idleReason === 'ERROR') return false;
+                await sleep(400);
+            }
+            return false;
+        }
+
+        // Skutočná kontrola spojenia: stav relácie + odpoveď prijímača
+        function checkCastHealth(timeout = 4000) {
+            return new Promise(resolve => {
+                const s = castSession();
+                if (!s) return resolve({ ok: false, reason: 'no-session' });
+                try {
+                    const obj = s.getSessionObj && s.getSessionObj();
+                    if (obj && obj.status && obj.status !== chrome.cast.SessionStatus.CONNECTED) {
+                        return resolve({ ok: false, reason: 'status-' + obj.status });
+                    }
+                    const m = s.getMediaSession();
+                    // Ak nič nehrá (IDLE), nemá sa čo pýtať – GET_STATUS by na zastavené médium vrátil falošnú chybu
+                    if (!m || !m.playerState || m.playerState === 'IDLE') return resolve({ ok: true, reason: 'idle' });
+                    const t = setTimeout(() => resolve({ ok: false, reason: 'timeout' }), timeout);
+                    m.getStatus(new chrome.cast.media.GetStatusRequest(),
+                        () => { clearTimeout(t); resolve({ ok: true }); },
+                        e => { clearTimeout(t); resolve({ ok: false, reason: (e && e.code) || 'error' }); });
+                } catch (e) {
+                    resolve({ ok: false, reason: 'exception' });
                 }
             });
         }
 
-        async function sendToCast() {
-            const stream = streams[currentStreamIndex];
-            const url = stream.urls[currentUrlIndex];
-            const castContext = cast.framework.CastContext.getInstance();
-            let session = castContext.getCurrentSession();
+        function humanReason(r) {
+            if (r === 'timeout') return 'zariadenie neodpovedá';
+            if (/^status-/.test(r || '')) return 'spojenie bolo stratené';
+            if (r === 'loadMedia') return 'zariadenie neprijalo stream';
+            return 'neznáma chyba spojenia';
+        }
 
+        function endSessionQuietly() {
+            const c = ctx();
+            if (!c || !c.getCurrentSession()) return;
+            expectingEnd = true;
+            setTimeout(() => { expectingEnd = false; }, 4000);
+            try { c.endCurrentSession(true); } catch (e) { /* nič */ }
+        }
+
+        // Pri zlom spojení: prerušiť reláciu a ponúknuť nové pripojenie
+        async function handleCastBroken(reason, wasPlaying) {
+            if (breaking) return;
+            breaking = true;
             try {
-                if (!session) {
-                    await castContext.requestSession();
-                    session = castContext.getCurrentSession();
-                }
+                cancelPlayback();
+                desired = false; mode = null;
+                cleanupLocal();
+                const name = castDeviceName || 'Chromecastom';
+                endSessionQuietly();
+                healthStrikes = 0;
+                castLabel.textContent = 'Chromecast';
+                render('Spojenie prerušené');
+                setCastInfo('error', 'Spojenie bolo prerušené – treba sa pripojiť znova');
+                showNotice(`Spojenie s „${name}“ nefunguje (${humanReason(reason)}). Pripojenie som prerušil – pripojte sa prosím znova.`, [
+                    { label: 'Pripojiť znova', fn: () => { resumeAfterReconnect = !!wasPlaying; reconnectCast(); } },
+                    { label: 'Hrať na Chromebooku', fn: () => playStation(current) }
+                ], 'error');
+            } finally {
+                breaking = false;
+            }
+        }
 
-                if (session) {
-                    const mediaInfo = new chrome.cast.media.MediaInfo(url, 'audio/mp3');
-                    mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
-                    mediaInfo.metadata.title = stream.name;
-                    mediaInfo.metadata.subtitle = `Bitrate: ${stream.bitrate}`;
-
-                    const request = new chrome.cast.media.LoadRequest(mediaInfo);
-                    request.autoplay = true;
-
-                    await session.loadMedia(request);
-                    setPlayingState(true);
-                    displayStatus.textContent = "Casting na " + castDeviceName;
-                    audioElement.pause(); // Zastavenie lokálneho ak ide do Chromecastu
-                }
-            } catch (err) {
-                console.error("Cast chyba:", err);
-                displayStatus.textContent = "Cast zlyhal";
+        // Dialóg výberu zariadenia sa musí otvoriť z kliknutia používateľa (preto je to vždy tlačidlo)
+        async function reconnectCast() {
+            if (!castReady) return;
+            const c = ctx();
+            hideNotice();
+            if (c.getCurrentSession()) { endSessionQuietly(); mode = null; render(); await sleep(800); }
+            setCastInfo('checking', 'Otváram výber zariadenia…');
+            let err;
+            try { err = await c.requestSession(); } catch (e) { err = String(e); }
+            if (err === 'cancel') { resumeAfterReconnect = false; updateCastInfo(); }
+            else if (err) {
+                updateCastInfo();
+                showNotice(`Pripojenie sa nepodarilo (${err}). Skontrolujte Wi-Fi a skúste znova.`,
+                    [{ label: 'Skúsiť znova', fn: reconnectCast }], 'error');
             }
         }
 
         async function toggleCastSession() {
-            const castContext = cast.framework.CastContext.getInstance();
-            try {
-                await castContext.requestSession();
-            } catch (e) {
-                console.error("Nepodarilo sa vyvolať Chromecast dialóg:", e);
+            if (!castReady) {
+                showNotice('Chromecast nie je v tomto prehliadači dostupný. Otvorte aplikáciu v Chrome.', [], 'error');
+                return;
+            }
+            let err;
+            try { err = await ctx().requestSession(); } catch (e) { err = String(e); }
+            if (err && err !== 'cancel') {
+                showNotice(`Pripojenie sa nepodarilo (${err}).`, [{ label: 'Skúsiť znova', fn: reconnectCast }], 'error');
             }
         }
 
-        function setPlayingState(playing) {
-            isPlaying = playing;
-            if (playing) {
-                playIcon.textContent = "⏸";
-                playText.textContent = "Zastaviť";
-                displayPanel.classList.add('playing');
-                displayStatus.textContent = "Prehráva sa";
+        // Pravidelná kontrola (každých 10 s). Reláciu preruší až po dvoch zlyhaniach za sebou.
+        async function castHealthTick() {
+            if (document.hidden || busy || breaking || !castSession()) return;
+            const h = await checkCastHealth();
+            if (h.ok) healthStrikes = 0;
+            else {
+                healthStrikes++;
+                if (healthStrikes >= 2) { await handleCastBroken(h.reason, desired); return; }
+            }
+            updateCastInfo(h);
+        }
+
+        // Ručná kontrola spojenia (tlačidlo „Skontrolovať spojenie“)
+        async function diagnoseCast() {
+            if (!castReady) { toggleCastSession(); return; }
+            if (!castSession()) {
+                updateCastInfo();
+                showNotice('Nie ste pripojený k žiadnemu Chromecastu.', [{ label: 'Pripojiť', fn: reconnectCast }], 'info');
+                return;
+            }
+            setCastInfo('checking', 'Kontrolujem spojenie…');
+            const h = await checkCastHealth();
+            if (h.ok) {
+                healthStrikes = 0;
+                updateCastInfo(h);
+                showNotice(`Spojenie s „${castDeviceName}“ je v poriadku.`, [], 'info');
+                setTimeout(() => { if ($('noticeText').textContent.indexOf('je v poriadku') > -1) hideNotice(); }, 4000);
             } else {
-                playIcon.textContent = "▶";
-                playText.textContent = "Prehrať";
-                displayPanel.classList.remove('playing');
-                displayStatus.textContent = "Zastavené";
+                await handleCastBroken(h.reason, desired);
             }
         }
 
-        // Ovládanie hlasitosti
-        volumeRange.oninput = (e) => {
-            audioElement.volume = e.target.value;
-            const castContext = cast.framework.CastContext ? cast.framework.CastContext.getInstance() : null;
-            const session = castContext ? castContext.getCurrentSession() : null;
-            if (session) {
-                session.setVolume(parseFloat(e.target.value));
-            }
+        // =====================================================================
+        //  OVLÁDANIE, MEDIA SESSION, ŠTART
+        // =====================================================================
+        volumeRange.oninput = e => {
+            const v = parseFloat(e.target.value);
+            audio.volume = v;
+            const s = castSession();
+            if (s) { try { s.setVolume(v); } catch (err) { console.warn('Hlasitosť Cast:', err); } }
         };
 
-        // Inicializácia pri naštartovaní
-        window.onload = () => {
-            renderStreams();
-            const defaultStream = streams[currentStreamIndex];
-            displayTitle.textContent = defaultStream.name;
-            displayBitrate.textContent = defaultStream.bitrate;
-            audioElement.volume = volumeRange.value;
-            if (localStorage.getItem('igor_last_cast_name')) {
-                castLabel.textContent = localStorage.getItem('igor_last_cast_name');
-            }
-        };
+        function updateMediaSession() {
+            if (!('mediaSession' in navigator) || typeof MediaMetadata === 'undefined') return;
+            try {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: current.name,
+                    artist: 'Igor Stream',
+                    artwork: [{ src: 'icon-512.png', sizes: '512x512', type: 'image/png' }]
+                });
+                navigator.mediaSession.setActionHandler('play', () => { if (!desired) playStation(current); });
+                navigator.mediaSession.setActionHandler('pause', () => stopPlayback());
+                navigator.mediaSession.setActionHandler('stop', () => stopPlayback());
+            } catch (e) { /* nepodporované – nevadí */ }
+        }
+
+        $('playBtn').onclick = togglePlayPause;
+        $('castBtn').onclick = toggleCastSession;
+        $('castCheckBtn').onclick = diagnoseCast;
+        $('recheckBtn').onclick = () => checkAll(true);
+
+        loadHealth();
+        renderStreams();
+        audio.volume = parseFloat(volumeRange.value);
+        if (castDeviceName) castLabel.textContent = castDeviceName;
+        render();
+        setCastInfo('', 'Chromecast: zisťujem stav…');
+
+        // Cast sa inicializuje až teraz, keď je všetko ostatné definované
+        window.onCastApiReady = initCast;
+        if (window.__castAvailable !== undefined) initCast(window.__castAvailable);   // SDK bolo rýchlejšie ako táto stránka
+
+        checkAll();      // na pozadí overí, ktoré streamy tento Chromebook vie prehrať
     </script>
 </body>
 </html>
