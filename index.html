@@ -2,339 +2,611 @@
 <html lang="sk">
 <head>
 <link rel="manifest" href="manifest.json">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#081426">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SK Media">
-<title>SK Rádiá</title>
-<style>
-:root{color-scheme:dark;--bg:#07111f;--panel:#101e30;--panel2:#15263a;--line:#263950;--text:#eef6ff;--muted:#9db0c6;--cyan:#34d8e8;--green:#5ee0a0;--red:#ff8d9b}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:14px;background:var(--panel2);color:var(--text);padding:12px 14px;font-weight:650}button:active{transform:scale(.985)}button.primary{background:var(--cyan);border-color:var(--cyan);color:#04111e}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:760px;margin:auto;padding:16px;display:flex;flex-direction:column;gap:14px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#1a617b,#35dbe8);font-size:23px;color:#06121d}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:800}.brand h1{font-size:20px;line-height:1.15;margin:3px 0 0}.status{font-size:12px;color:var(--muted);text-align:right;max-width:42%}.screen{border:1px solid var(--line);border-radius:24px;padding:20px;background:radial-gradient(ellipse at 50% 0%,#153d5a 0,#10233a 45%,#0b1728 100%);min-height:190px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;box-shadow:0 14px 38px #0003}.screenhead{display:flex;justify-content:space-between;gap:12px;align-items:center}.pill{border:1px solid #3c6073;border-radius:99px;padding:5px 9px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.8px}.live{font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px}.now{min-width:0}.now small{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.now h2{font-size:clamp(22px,6vw,34px);line-height:1.08;overflow-wrap:anywhere;margin:0 0 8px}.now p{font-size:13px;color:var(--muted);margin:0}.bars{height:28px;display:flex;align-items:end;gap:4px;opacity:.85}.bars i{display:block;width:5px;height:5px;border-radius:5px 5px 1px 1px;background:var(--cyan);animation:beat .7s ease-in-out infinite alternate}.bars i:nth-child(3n){animation-delay:.25s}.bars i:nth-child(2n){animation-delay:.45s}.bars.paused i{height:4px!important;animation:none}@keyframes beat{from{height:5px}to{height:26px}}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:center}.actions button{min-height:48px}.timer-oval{border-color:#3b6477;background:linear-gradient(180deg,#18364b,#102337);color:#bdeaf0;min-width:0}.timer-oval.active{border-color:var(--cyan);color:#e7ffff;box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.timer-cylinder{display:inline-block;animation:spin 2.4s linear infinite}.timer-panel{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px}.timer-panel button{padding:9px 12px;border-radius:999px}.timer-panel .timer-choice{background:#142c40;border-color:#36556b}.timer-panel .timer-cancel{color:var(--muted);background:transparent}.timer-caption{width:100%;font-size:12px;color:var(--muted);text-align:center}.oval-btn{height:48px;border-radius:999px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;font-size:13px}.cast-oval{border-color:#3b6477;background:linear-gradient(180deg,#18364b,#102337);color:var(--cyan)}.cast-oval.connected{box-shadow:0 0 0 2px #34d8e866,0 0 18px #34d8e855;border-color:var(--cyan)}.power-wrap{display:flex;justify-content:flex-end}.power-toggle{position:relative;width:100%;max-width:190px;height:48px;padding:4px 12px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#172334;border:1px solid #34445a;color:var(--muted);transition:background .2s,border-color .2s,box-shadow .2s}.power-toggle .track{position:relative;width:42px;height:24px;border-radius:999px;background:#35465a;flex-shrink:0;transition:background .2s}.power-toggle .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#d7e2ef;transition:transform .2s,background .2s}.power-toggle[aria-checked="true"]{background:#103a3c;border-color:var(--cyan);color:#e7ffff;box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.power-toggle[aria-checked="true"] .track{background:#16a6a8}.power-toggle[aria-checked="true"] .knob{transform:translateX(18px);background:white}.power-toggle:focus-visible,.cast-oval:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.power-toggle.icon-power{width:64px;max-width:64px;height:48px;padding:0;justify-content:center;border-radius:999px;font-size:23px;font-weight:700;line-height:1;color:var(--muted);background:#172334;border:1px solid #34445a;box-shadow:none}.power-toggle.icon-power[aria-pressed="true"]{color:#e7ffff;background:#103a3c;border-color:var(--cyan);box-shadow:0 0 0 1px #34d8e844,0 0 18px #34d8e833}.power-toggle.icon-power:active{transform:scale(.97)}.power-toggle.icon-power:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.toolbar{display:flex;gap:8px}.toolbar input{flex:1;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:13px;padding:12px 14px;outline:none}.toolbar input:focus{border-color:var(--cyan)}.sectiontitle{display:flex;justify-content:space-between;align-items:center;margin:2px 0 0}.sectiontitle h3{font-size:15px;margin:0}.sectiontitle span{font-size:12px;color:var(--muted)}.list{display:flex;flex-direction:column;gap:8px}.item{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);background:var(--panel);border-radius:15px;min-width:0}.item.active{border-color:#2daebe;background:#102b3b}.item .meta{min-width:0;flex:1}.item strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.play{width:42px;height:42px;padding:0;border-radius:12px;flex-shrink:0;color:var(--cyan);font-size:18px}.heart{padding:8px;border:0;background:transparent;color:var(--muted);font-size:18px}.bottom{font-size:11px;line-height:1.5;color:var(--muted);padding:4px 3px 16px}.bottom a{color:var(--cyan)}.volume{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px 14px}.volume label{font-size:12px;color:var(--muted);white-space:nowrap}.volume input{width:100%;accent-color:var(--cyan)}.notice{border:1px solid #5a4d2b;background:#2a2517;color:#f3d995;border-radius:12px;padding:11px 12px;font-size:12px;line-height:1.45}.hidden{display:none!important}.empty{padding:25px 14px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed var(--line);border-radius:15px}.spinner{display:inline-block;width:12px;height:12px;border:2px solid #426172;border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:5px}@keyframes spin{to{transform:rotate(360deg)}}@media(min-width:620px){.app{padding:24px}.screen{min-height:220px}.list{display:grid;grid-template-columns:1fr 1fr}}
-</style>
-<script>
-window.__onGCastApiAvailable = function(available) {
-  window.castSdkReady = !!available;
-  window.dispatchEvent(new Event('cast-sdk-ready'));
-};
-</script>
-<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Igor Stream - Mobilný Audio Player</title>
+    <style>
+        :root {
+            --bg-color: #0f111a;
+            --card-bg: #1a1e29;
+            --accent-color: #00e5ff;
+            --accent-glow: rgba(0, 229, 255, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #8c92a4;
+            --success: #00e676;
+            --danger: #ff5252;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        /* Displej */
+        .display-panel {
+            background: #11141d;
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .display-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .now-playing-label {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-meta {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .bitrate-badge {
+            background: rgba(255,255,255,0.08);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Ekvalizér */
+        .equalizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4px;
+            height: 22px;
+            margin-top: 12px;
+        }
+
+        .bar {
+            width: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+            height: 4px;
+            transition: height 0.2s ease;
+        }
+
+        .playing .bar {
+            animation: equalize 0.8s infinite ease-in-out alternate;
+        }
+
+        .playing .bar:nth-child(1) { animation-delay: 0.1s; }
+        .playing .bar:nth-child(2) { animation-delay: 0.3s; }
+        .playing .bar:nth-child(3) { animation-delay: 0.2s; }
+        .playing .bar:nth-child(4) { animation-delay: 0.5s; }
+        .playing .bar:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes equalize {
+            0% { height: 4px; }
+            100% { height: 20px; }
+        }
+
+        /* Ovládacie prvky */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #12151e;
+            padding: 10px 14px;
+            border-radius: 12px;
+        }
+
+        .volume-container span { font-size: 0.85rem; color: var(--text-muted); }
+
+        input[type="range"] {
+            flex: 1;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            background: #252a3a;
+            color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2f3548; border-color: var(--accent-color); }
+        
+        .btn-primary {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+        }
+        .btn-primary:hover { background: #00b8d4; }
+
+        /* Zoznam streamov */
+        .streams-section h2 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .streams-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 260px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .streams-list::-webkit-scrollbar { width: 4px; }
+        .streams-list::-webkit-scrollbar-thumb { background: #2f3548; border-radius: 2px; }
+
+        .stream-card {
+            background: #131620;
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .stream-card:hover { background: #181c29; }
+        .stream-card.active {
+            border-color: var(--accent-color);
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        .stream-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .health-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .health-indicator.ok { background: var(--success); box-shadow: 0 0 6px var(--success); }
+        .health-indicator.error { background: var(--danger); }
+
+        .stream-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stream-meta-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stream-bitrate {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        #audioElement { display: none; }
+    </style>
+
+    <!-- Google Cast SDK -->
+    <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 </head>
 <body>
-<main class="app">
-  <header class="top">
-    <div class="brand"><div class="logo">♫</div><div><div class="eyebrow">Internetové vysielanie</div><h1>SK Rádiá</h1></div></div>
-    <div class="status" id="status">Katalóg načítaný</div>
-  </header>
 
-  <section class="screen" aria-live="polite">
-    <div class="screenhead"><span class="pill" id="modePill">RÁDIO</span><span class="live" id="liveState">● PRIPRAVENÉ</span></div>
-    <div class="now"><small id="nowLabel">VYBRANÁ STANICA</small><h2 id="nowTitle">Načítavam…</h2><p id="nowSub">Databáza internetových staníc</p></div>
-    <div class="bars paused" id="bars" aria-hidden="true"></div>
-  </section>
+    <div class="app-container">
+        <h1>Igor Stream</h1>
 
-  <div class="actions">
-    <button class="oval-btn cast-oval" id="castBtn" type="button" aria-pressed="false">▣ <span id="castBtnText">Chromecast</span></button>
-    <button class="oval-btn timer-oval" id="timerBtn" type="button" aria-expanded="false" aria-controls="timerPanel"><span class="timer-cylinder" aria-hidden="true">⏳</span> <span id="timerBtnText">Časovač</span></button>
-    <div class="power-wrap"><button class="power-toggle icon-power" id="powerBtn" type="button" aria-pressed="false" aria-label="Spustiť prehrávanie" title="Spustiť prehrávanie"><span id="powerIcon" aria-hidden="true">▶</span></button></div>
-  </div>
-  <div class="timer-panel hidden" id="timerPanel" aria-label="Časovač vypnutia">
-    <div class="timer-caption" id="timerCaption">Automaticky vypnúť stream po:</div>
-    <button class="timer-choice" data-minutes="120" type="button">120 min</button>
-    <button class="timer-choice" data-minutes="60" type="button">60 min</button>
-    <button class="timer-choice" data-minutes="75" type="button">75 min</button>
-    <button class="timer-choice" data-minutes="90" type="button">90 min</button>
-    <button class="timer-cancel" id="timerCancel" type="button">Zrušiť časovač</button>
-  </div>
-  <div class="volume"><label for="volume">HLASITOSŤ</label><input id="volume" type="range" min="0" max="1" step=".01" value=".5"><strong id="volumeText">50%</strong></div>
+        <!-- Horný displej -->
+        <div id="displayPanel" class="display-panel">
+            <div class="now-playing-label">Práve hraje</div>
+            <div id="displayTitle" class="track-title">Žiadny stream nevybratý</div>
+            <div class="track-meta">
+                <span id="displayStatus">Pripravené</span>
+                <span id="displayBitrate" class="bitrate-badge">-</span>
+            </div>
+            <div id="equalizer" class="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
 
-  <!-- Odstránené prepínanie TV/Radio -->
-  <div class="toolbar"><input id="search" type="search" placeholder="Hľadať stanicu…" autocomplete="off"></div>
-  
-  <div class="sectiontitle"><h3 id="listTitle">Slovenské rádiá (HQ)</h3><span id="count">0 staníc</span></div>
-  <div class="list" id="stationList"><div class="empty"><span class="spinner"></span>Načítavam databázu…</div></div>
+        <!-- Ovládacie prvky -->
+        <div class="controls-panel">
+            <div class="volume-container">
+                <span>🔊</span>
+                <input type="range" id="volumeRange" min="0" max="1" step="0.05" value="1">
+            </div>
+            <div class="action-buttons">
+                <button id="castBtn" class="btn" onclick="toggleCastSession()">
+                    <span>📺</span> <span id="castLabel">Chromecast</span>
+                </button>
+                <button id="playBtn" class="btn btn-primary" onclick="togglePlayPause()">
+                    <span id="playIcon">▶</span> <span id="playText">Prehrať</span>
+                </button>
+            </div>
+        </div>
 
-  <div class="notice">Automatické spustenie na Chromecaste je možné po výbere zariadenia v systémovom dialógu.</div>
-  <footer class="bottom">Garantované HTTPS streamy vo vysokej kvalite.</footer>
-</main>
-<audio id="audio" playsinline></audio>
+        <!-- Zoznam streamov -->
+        <div class="streams-section">
+            <h2>Slovenské rádiá & Streamy</h2>
+            <div id="streamsList" class="streams-list">
+                <!-- Dynamicky generované -->
+            </div>
+        </div>
+    </div>
 
-<script>
-(() => {
-'use strict';
-const $ = id => document.getElementById(id);
+    <audio id="audioElement" crossorigin="anonymous"></audio>
 
-// Vložený zoznam overených HTTPS streamov
-const radios = [
-  {name: 'Rádio Expres', url: 'https://stream.expres.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
-  {name: 'Fun Rádio', url: 'https://stream.funradio.sk:8443/fun256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
-  {name: 'Rádio Vlna', url: 'https://stream.radiovlna.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
-  {name: 'Europa 2', url: 'https://stream.europa2.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
-  {name: 'Rádio Melody', url: 'https://stream.radiomelody.sk/256.mp3', codec: '256 kbps', countryLabel: 'Slovensko'},
-  {name: 'Rádio Slovensko', url: 'https://icecast.stv.livebox.sk/slovensko_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Regina Západ', url: 'https://icecast.stv.livebox.sk/reginaba_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Regina Stred', url: 'https://icecast.stv.livebox.sk/reginabb_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Regina Východ', url: 'https://icecast.stv.livebox.sk/reginake_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Devín', url: 'https://icecast.stv.livebox.sk/devin_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio_FM', url: 'https://icecast.stv.livebox.sk/fm_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Patria', url: 'https://icecast.stv.livebox.sk/patria_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Litera', url: 'https://icecast.stv.livebox.sk/litera_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Junior', url: 'https://icecast.stv.livebox.sk/junior_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'},
-  {name: 'Rádio Pyramída', url: 'https://icecast.stv.livebox.sk/pyramida_128.mp3', codec: 'HQ', countryLabel: 'Slovensko'}
-];
+    <script>
+        // Databáza slovenských rádií s vysokou kvalitou (256, 192, 128 kbps) a záložnými linkami
+        const streams = [
+            {
+                name: "Rádio Slovensko",
+                bitrate: "256 kbps",
+                urls: [
+                    "https://n06.rcs.revma.com/g8hh72e3t1quv?njts=1710000000",
+                    "https://icecast.stvr.sk/Slovensko-128.mp3"
+                ]
+            },
+            {
+                name: "Rádio_FM",
+                bitrate: "256 kbps",
+                urls: [
+                    "https://n04.rcs.revma.com/y35522e3t1quv",
+                    "https://icecast.stvr.sk/FM-128.mp3"
+                ]
+            },
+            {
+                name: "Rádio Expres",
+                bitrate: "192 kbps",
+                urls: [
+                    "https://stream.express.sk/express-192.mp3",
+                    "https://stream.express.sk/express-128.mp3"
+                ]
+            },
+            {
+                name: "Fun Radio",
+                bitrate: "192 kbps",
+                urls: [
+                    "https://live.funradio.sk:8000/fun192.mp3",
+                    "https://live.funradio.sk:8000/fun128.mp3"
+                ]
+            },
+            {
+                name: "Rádio Jemné",
+                bitrate: "128 kbps",
+                urls: [
+                    "https://stream.jemne.sk/jemne128.mp3"
+                ]
+            },
+            {
+                name: "Rádio Vlna",
+                bitrate: "128 kbps",
+                urls: [
+                    "https://stream.radiovlna.sk/vlna128.mp3"
+                ]
+            }
+        ];
 
-let selected=null, castContext=null, castSession=null;
-let localPlaying=false, playbackOn=false;
-const CAST_PREF_KEY='skmedia-preferred-cast-name';
+        let currentStreamIndex = parseInt(localStorage.getItem('igor_last_stream')) || 0;
+        let currentUrlIndex = 0;
+        let isPlaying = false;
+        let castDeviceName = localStorage.getItem('igor_last_cast_name') || "Chromecast";
 
-function preferredCastName(){try{return localStorage.getItem(CAST_PREF_KEY)||''}catch(e){return ''}}
-function rememberCastDevice(session){
-  try{
-    const name=session?.getCastDevice?.()?.friendlyName;
-    if(name){localStorage.setItem(CAST_PREF_KEY,name);$('castBtnText').textContent=name}
-  }catch(e){console.warn('Nepodarilo sa uložiť preferovaný Chromecast',e)}
-}
+        const audioElement = document.getElementById('audioElement');
+        const displayTitle = document.getElementById('displayTitle');
+        const displayStatus = document.getElementById('displayStatus');
+        const displayBitrate = document.getElementById('displayBitrate');
+        const displayPanel = document.getElementById('displayPanel');
+        const playIcon = document.getElementById('playIcon');
+        const playText = document.getElementById('playText');
+        const volumeRange = document.getElementById('volumeRange');
+        const castLabel = document.getElementById('castLabel');
 
-function initCastContext(){
-  if(!window.castSdkReady||!window.cast?.framework)return;
-  try{
-    castContext=cast.framework.CastContext.getInstance();
-    castContext.setOptions({receiverApplicationId:chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,autoJoinPolicy:chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED});
-    const session=castContext.getCurrentSession();
-    if(session){castSession=session;rememberCastDevice(session);$('castBtn').classList.add('connected');$('castBtn').setAttribute('aria-pressed','true')}
-    else if(preferredCastName())$('castBtnText').textContent='Obľúbený: '+preferredCastName();
-    castContext.addEventListener(cast.framework.CastContextEventType.SESSION_STATE_CHANGED,()=>{
-      const current=castContext?.getCurrentSession();
-      if(current){castSession=current;rememberCastDevice(current);$('castBtn').classList.add('connected');$('castBtn').setAttribute('aria-pressed','true')}
-      else{$('castBtn').classList.remove('connected');$('castBtn').setAttribute('aria-pressed','false');$('castBtnText').textContent=preferredCastName()?'Obľúbený: '+preferredCastName():'Chromecast'}
-    });
-  }catch(e){console.warn('Google Cast inicializácia:',e)}
-}
+        // Inicializácia Google Cast API
+        window['__onGCastApiAvailable'] = function(isAvailable) {
+            if (isAvailable) {
+                initializeCastContext();
+            }
+        };
 
-const audio=$('audio');
-const bars=$('bars');
-for(let i=0;i<28;i++){const b=document.createElement('i');b.style.animationDelay=(Math.random()*.6)+'s';bars.appendChild(b)}
-function status(s){$('status').textContent=s}
+        function initializeCastContext() {
+            const castContext = cast.framework.CastContext.getInstance();
+            castContext.setOptions({
+                receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+                autoJoinPolicy: chrome.cast.AutoJoinPolicy.TAB_AND_ORIGIN_SCOPED
+            });
 
-function setNow(item){
-  selected=item;
-  $('nowTitle').textContent=item?.name||'Nič nie je vybrané';
-  $('nowSub').textContent=item?(item.codec+' • '+item.countryLabel):'Vyberte stanicu zo zoznamu';
-  renderList();
-}
+            castContext.addEventListener(
+                cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
+                (event) => {
+                    const session = castContext.getCurrentSession();
+                    if (session) {
+                        castDeviceName = session.getCastDevice().friendlyName || "Pripojené";
+                        castLabel.textContent = castDeviceName;
+                        localStorage.setItem('igor_last_cast_name', castDeviceName);
+                        // Ak beží lokálne prehrávanie, môžeme ho zastaviť a poslať na Chromecast
+                        if (isPlaying) {
+                            sendToCast();
+                        }
+                    } else {
+                        castLabel.textContent = "Chromecast";
+                    }
+                }
+            );
+            
+            const session = castContext.getCurrentSession();
+            if (session) {
+                castDeviceName = session.getCastDevice().friendlyName || "Chromecast";
+                castLabel.textContent = castDeviceName;
+            }
+        }
 
-function renderList(){
-  const q=$('search').value.trim().toLocaleLowerCase('sk');
-  const data=radios.filter(x=>!q||(x.name+' '+x.countryLabel).toLocaleLowerCase('sk').includes(q));
-  $('count').textContent=data.length+' staníc';
-  $('stationList').replaceChildren();
-  
-  if(!data.length){
-    const e=document.createElement('div');e.className='empty';e.textContent='Žiadna stanica nenašla.';$('stationList').appendChild(e);return;
-  }
-  
-  data.forEach(item=>{
-    const row=document.createElement('div');row.className='item'+(selected?.url===item.url?' active':'');
-    const meta=document.createElement('div');meta.className='meta';
-    const title=document.createElement('strong');title.textContent=item.name;
-    const sub=document.createElement('small');sub.textContent=item.codec+' • '+item.countryLabel;
-    meta.append(title,sub);
-    const play=document.createElement('button');play.className='play';play.textContent='▶';play.title='Prehrať '+item.name;play.setAttribute('aria-label',play.title);
-    play.addEventListener('click',()=>chooseAndPlay(item));
-    row.append(meta,play);$('stationList').appendChild(row);
-  });
-}
+        // Vykreslenie zoznamu streamov
+        function renderStreams() {
+            const container = document.getElementById('streamsList');
+            container.innerHTML = '';
 
-function setPlaybackState(on){
-  playbackOn=!!on;
-  $('powerBtn').setAttribute('aria-pressed',String(playbackOn));
-  $('powerBtn').setAttribute('aria-label',playbackOn?'Zastaviť prehrávanie':'Spustiť prehrávanie');
-  $('powerBtn').setAttribute('title',playbackOn?'Zastaviť prehrávanie':'Spustiť prehrávanie');
-  $('powerIcon').textContent=playbackOn?'■':'▶';
-  $('liveState').textContent=playbackOn?'● PREHRÁVA':'● VYPNUTÉ';
-  bars.classList.toggle('paused',!playbackOn);
-}
+            streams.forEach((stream, index) => {
+                const card = document.createElement('div');
+                card.className = `stream-card ${index === currentStreamIndex ? 'active' : ''}`;
+                card.onclick = () => selectStream(index);
+                card.innerHTML = `
+                    <div class="stream-info">
+                        <div id="health-${index}" class="health-indicator" title="Testujem..."></div>
+                        <div class="stream-name">${stream.name}</div>
+                    </div>
+                    <div class="stream-meta-right">
+                        <span class="stream-bitrate">${stream.bitrate}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+                checkStreamHealth(index, stream.urls[0]);
+            });
+        }
 
-async function loadOnCast(item){
-  const session=castContext?.getCurrentSession();if(!session)throw new Error('Chromecast nie je pripojený.');
-  const info=new chrome.cast.media.MediaInfo(item.url,'audio/mpeg');
-  info.metadata=new chrome.cast.media.GenericMediaMetadata();info.metadata.title=item.name;
-  const req=new chrome.cast.media.LoadRequest(info);req.autoplay=true;
-  await session.loadMedia(req);
-  castSession=session;
-  setPlaybackState(true);
-  $('liveState').textContent='● CAST PREHRÁVA';
-}
+        // Test dostupnosti streamu
+        async function checkStreamHealth(index, url) {
+            const indicator = document.getElementById(`health-${index}`);
+            if (!indicator) return;
+            try {
+                // Použijeme fetch s mode no-cors na overenie dostupnosti koncového bodu
+                await fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-cache' });
+                indicator.className = 'health-indicator ok';
+                indicator.title = 'Stream je dostupný';
+            } catch (e) {
+                indicator.className = 'health-indicator error';
+                indicator.title = 'Stream môže byť blokovaný alebo offline';
+            }
+        }
 
-async function localPlay(item){
-  audio.pause();
-  audio.removeAttribute('src');
-  audio.load();
-  
-  audio.src=item.url;
-  audio.volume=Number($('volume').value);
-  audio.load();
-  await audio.play();
-  localPlaying=true;
-  setPlaybackState(true);
-}
+        // Výber streamu
+        function selectStream(index) {
+            currentStreamIndex = index;
+            currentUrlIndex = 0;
+            localStorage.setItem('igor_last_stream', index);
+            
+            // Aktualizácia aktívnej triedy v UI
+            document.querySelectorAll('.stream-card').forEach((card, idx) => {
+                if (idx === index) card.classList.add('active');
+                else card.classList.remove('active');
+            });
 
-async function stopPlayback(){
-  audio.pause();
-  audio.removeAttribute('src');
-  audio.load();
-  localPlaying=false;
-  
-  const s=castContext?.getCurrentSession();
-  if(s){
-    try{
-      const media=s.getMediaSession?.();
-      if(media && typeof media.stop==='function') await media.stop();
-    }catch(e){console.warn('Chromecast stop:',e)}
-  }
-  setPlaybackState(false);
-  status('Prehrávanie vypnuté');
-}
+            const stream = streams[currentStreamIndex];
+            displayTitle.textContent = stream.name;
+            displayBitrate.textContent = stream.bitrate;
 
-async function startPlayback(){
-  if(!selected){status('Najprv vyberte stanicu.');return;}
-  await stopPlayback();
-  
-  try{
-    if(castContext?.getCurrentSession()){
-      await loadOnCast(selected);
-      status('Chromecast prehráva');
-    } else {
-      await localPlay(selected);
-      status('Prehrávanie spustené');
-    }
-  }catch(e){
-    console.warn(e);
-    setPlaybackState(false);
-    status('Prehrávanie zlyhalo: '+(e?.message||'neznáma chyba'));
-  }
-}
+            if (isPlaying) {
+                playCurrentStream();
+            }
+        }
 
-async function chooseAndPlay(item){
-  setNow(item);
-  await startPlayback();
-}
+        // Spustenie / zastavenie prehrávania
+        function togglePlayPause() {
+            const stream = streams[currentStreamIndex];
+            const castContext = cast.framework.CastContext ? cast.framework.CastContext.getInstance() : null;
+            const session = castContext ? castContext.getCurrentSession() : null;
 
-async function connectCast(){
-  if(!window.castSdkReady||!window.cast?.framework){status('Google Cast SDK nie je dostupné.');return}
-  try{
-    initCastContext();
-    if(!castContext.getCurrentSession()) await castContext.requestSession();
-    castSession=castContext.getCurrentSession();
-    rememberCastDevice(castSession);
-    $('castBtn').classList.add('connected');$('castBtn').setAttribute('aria-pressed','true');
-    $('castBtnText').textContent=castSession?.getCastDevice?.()?.friendlyName||'Chromecast pripojený';
-    
-    if(castSession && typeof castSession.getVolume==='function'){
-      const currentVolume=castSession.getVolume();
-      if(Number.isFinite(currentVolume)){ $('volume').value=String(currentVolume); $('volumeText').textContent=Math.round(currentVolume*100)+'%'; }
-    }
-    
-    if(selected){
-      await stopPlayback();
-      await startPlayback();
-    }
-    status('Chromecast pripojený');
-  }catch(e){
-    if(!castContext?.getCurrentSession()){$('castBtn').classList.remove('connected');$('castBtn').setAttribute('aria-pressed','false');$('castBtnText').textContent='Chromecast'}
-    status(e?.code==='cancel'?'Pripojenie zrušené':'Chromecast: '+(e?.message||e?.code||'nepodarilo sa pripojiť'));
-  }
-}
+            if (isPlaying) {
+                if (session) {
+                    session.endSession(true);
+                }
+                audioElement.pause();
+                setPlayingState(false);
+            } else {
+                if (session) {
+                    sendToCast();
+                } else {
+                    playCurrentStream();
+                }
+            }
+        }
 
-$('castBtn').addEventListener('click',connectCast);
-$('powerBtn').addEventListener('click',async()=>{if(playbackOn)await stopPlayback();else await startPlayback()});
+        function playCurrentStream() {
+            const stream = streams[currentStreamIndex];
+            const url = stream.urls[currentUrlIndex];
+            
+            audioElement.src = url;
+            audioElement.play().then(() => {
+                setPlayingState(true);
+                displayStatus.textContent = "Prehráva sa";
+            }).catch(error => {
+                console.warn(`Link ${url} zlyhal, skúšam alternatívny...`);
+                if (currentUrlIndex < stream.urls.length - 1) {
+                    currentUrlIndex++;
+                    playCurrentStream();
+                } else {
+                    displayStatus.textContent = "Chyba prehrávania";
+                    setPlayingState(false);
+                }
+            });
+        }
 
-let sleepTimerEnd=0, sleepTimerInterval=null;
-const SLEEP_TIMER_KEY='skMediaSleepTimerEnd';
-function updateSleepTimerUI(){
-  const active=sleepTimerEnd>Date.now();
-  $('timerBtn').classList.toggle('active',active);
-  $('timerBtn').setAttribute('aria-expanded',String(!$('timerPanel').classList.contains('hidden')));
-  if(active){
-    const seconds=Math.max(0,Math.ceil((sleepTimerEnd-Date.now())/1000));
-    $('timerBtnText').textContent=Math.floor(seconds/60)+'m '+String(seconds%60).padStart(2,'0')+'s';
-    $('timerCaption').textContent='Rádio sa vypne o '+new Date(sleepTimerEnd).toLocaleTimeString('sk-SK',{hour:'2-digit',minute:'2-digit'})+'.';
-  }else{$('timerBtnText').textContent='Časovač';$('timerCaption').textContent='Predvolený čas vypnutia: 120 minút.';}
-}
-async function expireSleepTimer(){
-  sleepTimerEnd=0;
-  try{localStorage.removeItem(SLEEP_TIMER_KEY)}catch(e){}
-  if(sleepTimerInterval){clearInterval(sleepTimerInterval);sleepTimerInterval=null;}
-  await stopPlayback();
-  $('timerPanel').classList.add('hidden');updateSleepTimerUI();status('Časovač: rádio automaticky vypnuté');
-}
-function cancelSleepTimer(){
-  sleepTimerEnd=0;try{localStorage.removeItem(SLEEP_TIMER_KEY)}catch(e){}
-  if(sleepTimerInterval){clearInterval(sleepTimerInterval);sleepTimerInterval=null;}
-  updateSleepTimerUI();status('Časovač vypnutia zrušený');
-}
-function startSleepTimer(minutes,quiet=false){
-  sleepTimerEnd=Date.now()+minutes*60*1000;
-  try{localStorage.setItem(SLEEP_TIMER_KEY,String(sleepTimerEnd))}catch(e){}
-  if(sleepTimerInterval)clearInterval(sleepTimerInterval);
-  sleepTimerInterval=setInterval(async()=>{
-    updateSleepTimerUI();
-    if(sleepTimerEnd && Date.now()>=sleepTimerEnd) await expireSleepTimer();
-  },1000);
-  updateSleepTimerUI();$('timerPanel').classList.add('hidden');
-  if(!quiet)status('Časovač nastavený na '+minutes+' minút');
-}
-function restoreOrStartSleepTimer(){
-  let saved=0;try{saved=Number(localStorage.getItem(SLEEP_TIMER_KEY)||0)}catch(e){}
-  if(saved>Date.now()){
-    sleepTimerEnd=saved;
-    sleepTimerInterval=setInterval(async()=>{
-      updateSleepTimerUI();
-      if(sleepTimerEnd && Date.now()>=sleepTimerEnd) await expireSleepTimer();
-    },1000);
-    updateSleepTimerUI();
-  }else{
-    if(saved && saved<=Date.now()){try{localStorage.removeItem(SLEEP_TIMER_KEY)}catch(e){}}
-    startSleepTimer(120,true);
-  }
-}
-$('timerBtn').addEventListener('click',()=>{$('timerPanel').classList.toggle('hidden');updateSleepTimerUI();});
-document.querySelectorAll('[data-minutes]').forEach(btn=>btn.addEventListener('click',()=>startSleepTimer(Number(btn.dataset.minutes))));
-$('timerCancel').addEventListener('click',()=>{cancelSleepTimer();$('timerPanel').classList.add('hidden');});
-document.addEventListener('visibilitychange',()=>{if(!document.hidden && sleepTimerEnd && Date.now()>=sleepTimerEnd){expireSleepTimer();}else updateSleepTimerUI();});
+        async function sendToCast() {
+            const stream = streams[currentStreamIndex];
+            const url = stream.urls[currentUrlIndex];
+            const castContext = cast.framework.CastContext.getInstance();
+            let session = castContext.getCurrentSession();
 
-$('search').addEventListener('input',renderList);
+            try {
+                if (!session) {
+                    await castContext.requestSession();
+                    session = castContext.getCurrentSession();
+                }
 
-let volumeTimer=null, volumeRequest=0;
-$('volume').addEventListener('input',()=>{
-  const level=Math.max(0,Math.min(1,Number($('volume').value)));
-  $('volumeText').textContent=Math.round(level*100)+'%';
-  audio.volume=level;
-  const request=++volumeRequest;
-  if(volumeTimer)clearTimeout(volumeTimer);
-  volumeTimer=setTimeout(async()=>{
-    const s=castContext?.getCurrentSession();
-    if(!s)return;
-    try{
-      if(typeof s.setVolumeLevel==='function') await s.setVolumeLevel(level);
-      else if(typeof s.setVolume==='function') await s.setVolume(level);
-      if(request===volumeRequest)castSession=s;
-    }catch(e){
-      console.warn('Nepodarilo sa nastaviť hlasitosť Chromecastu:',e);
-    }
-  },120);
-});
-window.addEventListener('cast-sdk-ready',()=>{if(window.castSdkReady){initCastContext();status(preferredCastName()?'Preferovaný Chromecast: '+preferredCastName():'Google Cast pripravený')}}); 
-if(window.castSdkReady)initCastContext();
-restoreOrStartSleepTimer();
+                if (session) {
+                    const mediaInfo = new chrome.cast.media.MediaInfo(url, 'audio/mp3');
+                    mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+                    mediaInfo.metadata.title = stream.name;
+                    mediaInfo.metadata.subtitle = `Bitrate: ${stream.bitrate}`;
 
-// Inicializácia pri načítaní
-selected = radios[0];
-setNow(selected);
-status('Katalóg načítaný');
+                    const request = new chrome.cast.media.LoadRequest(mediaInfo);
+                    request.autoplay = true;
 
-})();
-</script>
+                    await session.loadMedia(request);
+                    setPlayingState(true);
+                    displayStatus.textContent = "Casting na " + castDeviceName;
+                    audioElement.pause(); // Zastavenie lokálneho ak ide do Chromecastu
+                }
+            } catch (err) {
+                console.error("Cast chyba:", err);
+                displayStatus.textContent = "Cast zlyhal";
+            }
+        }
+
+        async function toggleCastSession() {
+            const castContext = cast.framework.CastContext.getInstance();
+            try {
+                await castContext.requestSession();
+            } catch (e) {
+                console.error("Nepodarilo sa vyvolať Chromecast dialóg:", e);
+            }
+        }
+
+        function setPlayingState(playing) {
+            isPlaying = playing;
+            if (playing) {
+                playIcon.textContent = "⏸";
+                playText.textContent = "Zastaviť";
+                displayPanel.classList.add('playing');
+                displayStatus.textContent = "Prehráva sa";
+            } else {
+                playIcon.textContent = "▶";
+                playText.textContent = "Prehrať";
+                displayPanel.classList.remove('playing');
+                displayStatus.textContent = "Zastavené";
+            }
+        }
+
+        // Ovládanie hlasitosti
+        volumeRange.oninput = (e) => {
+            audioElement.volume = e.target.value;
+            const castContext = cast.framework.CastContext ? cast.framework.CastContext.getInstance() : null;
+            const session = castContext ? castContext.getCurrentSession() : null;
+            if (session) {
+                session.setVolume(parseFloat(e.target.value));
+            }
+        };
+
+        // Inicializácia pri naštartovaní
+        window.onload = () => {
+            renderStreams();
+            const defaultStream = streams[currentStreamIndex];
+            displayTitle.textContent = defaultStream.name;
+            displayBitrate.textContent = defaultStream.bitrate;
+            audioElement.volume = volumeRange.value;
+            if (localStorage.getItem('igor_last_cast_name')) {
+                castLabel.textContent = localStorage.getItem('igor_last_cast_name');
+            }
+        };
+    </script>
 </body>
 </html>
