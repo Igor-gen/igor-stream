@@ -1,0 +1,570 @@
+{
+ "groups": {
+  "sk": "Slovenské rádiá",
+  "cz": "České rádiá (alternatíva)",
+  "music": "Hudobné kanály & playlisty"
+ },
+ "stations": [
+  {
+   "id": "slovensko",
+   "group": "sk",
+   "name": "Rádio Slovensko",
+   "urls": [
+    {
+     "url": "https://icecast.stv.livebox.sk/slovensko_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "http://live.slovakradio.sk:8000/Slovensko_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Slovensko",
+   "match": "slovensko",
+   "country": "SK"
+  },
+  {
+   "id": "fm",
+   "group": "sk",
+   "name": "Rádio_FM",
+   "urls": [
+    {
+     "url": "https://icecast.stv.livebox.sk/fm_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "http://live.slovakradio.sk:8000/FM_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio FM",
+   "match": "radio fm",
+   "country": "SK"
+  },
+  {
+   "id": "devin",
+   "group": "sk",
+   "name": "Rádio Devín",
+   "urls": [
+    {
+     "url": "https://icecast.stv.livebox.sk/devin_256.mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://icecast.stv.livebox.sk/devin_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Devin",
+   "match": "devin",
+   "country": "SK"
+  },
+  {
+   "id": "regina",
+   "group": "sk",
+   "name": "Rádio Regina",
+   "urls": [
+    {
+     "url": "https://icecast.stv.livebox.sk/regina_ba_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://icecast.stv.livebox.sk/regina_ke_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://icecast.stv.livebox.sk/regina_bb_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Regina",
+   "match": "regina",
+   "country": "SK"
+  },
+  {
+   "id": "expres",
+   "group": "sk",
+   "name": "Rádio Expres",
+   "urls": [
+    {
+     "url": "https://stream.bauermedia.sk/expres-hi.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Expres",
+   "match": "expres",
+   "country": "SK"
+  },
+  {
+   "id": "europa2",
+   "group": "sk",
+   "name": "Európa 2",
+   "urls": [
+    {
+     "url": "https://stream.bauermedia.sk/europa2-hi.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Europa 2",
+   "match": "europa 2",
+   "country": "SK"
+  },
+  {
+   "id": "melody",
+   "group": "sk",
+   "name": "Rádio Melody",
+   "urls": [
+    {
+     "url": "https://stream.bauermedia.sk/melody-hi.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.bauermedia.sk/melody-low.mp3",
+     "kbps": 64,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Melody",
+   "match": "melody",
+   "country": "SK"
+  },
+  {
+   "id": "rock",
+   "group": "sk",
+   "name": "Rádio Rock",
+   "urls": [
+    {
+     "url": "https://stream.bauermedia.sk/rock-hi.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Rock",
+   "match": "rock",
+   "country": "SK"
+  },
+  {
+   "id": "fun",
+   "group": "sk",
+   "name": "Fun Rádio",
+   "urls": [
+    {
+     "url": "https://live.funradio.sk:8000/fun192.mp3",
+     "kbps": 192,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://live.funradio.sk:8000/fun128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "http://stream.funradio.sk:8000/fun128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Fun Radio",
+   "match": "fun",
+   "country": "SK"
+  },
+  {
+   "id": "fun-dance",
+   "group": "sk",
+   "name": "Fun Rádio Dance",
+   "urls": [
+    {
+     "url": "http://stream.funradio.sk:8000/dance128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Fun Radio Dance",
+   "match": "dance",
+   "country": "SK"
+  },
+  {
+   "id": "kosice",
+   "group": "sk",
+   "name": "Rádio Košice",
+   "urls": [
+    {
+     "url": "http://stream.ecce.sk:8000/radiokosice-128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Kosice",
+   "match": "kosice",
+   "country": "SK"
+  },
+  {
+   "id": "jemne",
+   "group": "sk",
+   "name": "Rádio Jemné",
+   "urls": [
+    {
+     "url": "https://stream.jemne.sk/jemne128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Jemne",
+   "match": "jemne",
+   "country": "SK"
+  },
+  {
+   "id": "vlna",
+   "group": "sk",
+   "name": "Rádio Vlna",
+   "urls": [
+    {
+     "url": "https://stream.radiovlna.sk/vlna128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Vlna",
+   "match": "vlna",
+   "country": "SK"
+  },
+  {
+   "id": "cro-zurnal",
+   "group": "cz",
+   "name": "ČRo Radiožurnál",
+   "urls": [
+    {
+     "url": "https://rozhlas.stream/radiozurnal_high.aac",
+     "kbps": 160,
+     "type": "audio/aac"
+    },
+    {
+     "url": "https://rozhlas.stream/radiozurnal.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://rozhlas.stream/radiozurnal_low.aac",
+     "kbps": 64,
+     "type": "audio/aac"
+    }
+   ]
+  },
+  {
+   "id": "cro-dvojka",
+   "group": "cz",
+   "name": "ČRo Dvojka",
+   "urls": [
+    {
+     "url": "https://rozhlas.stream/dvojka_high.aac",
+     "kbps": 160,
+     "type": "audio/aac"
+    },
+    {
+     "url": "https://rozhlas.stream/dvojka.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://rozhlas.stream/dvojka_low.aac",
+     "kbps": 64,
+     "type": "audio/aac"
+    }
+   ]
+  },
+  {
+   "id": "cro-vltava",
+   "group": "cz",
+   "name": "ČRo Vltava",
+   "urls": [
+    {
+     "url": "https://rozhlas.stream/vltava_high.aac",
+     "kbps": 160,
+     "type": "audio/aac"
+    },
+    {
+     "url": "https://rozhlas.stream/vltava.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://rozhlas.stream/vltava_low.aac",
+     "kbps": 64,
+     "type": "audio/aac"
+    }
+   ]
+  },
+  {
+   "id": "cro-jazz",
+   "group": "cz",
+   "name": "ČRo Jazz",
+   "urls": [
+    {
+     "url": "https://rozhlas.stream/jazz_high.aac",
+     "kbps": 160,
+     "type": "audio/aac"
+    },
+    {
+     "url": "https://rozhlas.stream/jazz.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://rozhlas.stream/jazz_low.aac",
+     "kbps": 64,
+     "type": "audio/aac"
+    }
+   ]
+  },
+  {
+   "id": "cro-wave",
+   "group": "cz",
+   "name": "ČRo Radio Wave",
+   "urls": [
+    {
+     "url": "https://rozhlas.stream/radio_wave_high.aac",
+     "kbps": 160,
+     "type": "audio/aac"
+    },
+    {
+     "url": "https://rozhlas.stream/radio_wave.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://rozhlas.stream/radio_wave_low.aac",
+     "kbps": 64,
+     "type": "audio/aac"
+    }
+   ]
+  },
+  {
+   "id": "soma-groove",
+   "group": "music",
+   "name": "SomaFM – Groove Salad",
+   "urls": [
+    {
+     "url": "https://ice.somafm.com/groovesalad-256-mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/groovesalad-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/groovesalad",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Groove Salad",
+   "match": "groove salad"
+  },
+  {
+   "id": "soma-lush",
+   "group": "music",
+   "name": "SomaFM – Lush",
+   "urls": [
+    {
+     "url": "https://ice.somafm.com/lush-256-mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/lush-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/lush",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "SomaFM Lush",
+   "match": "lush"
+  },
+  {
+   "id": "soma-agent",
+   "group": "music",
+   "name": "SomaFM – Secret Agent",
+   "urls": [
+    {
+     "url": "https://ice.somafm.com/secretagent-256-mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/secretagent-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/secretagent",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Secret Agent",
+   "match": "secret agent"
+  },
+  {
+   "id": "soma-space",
+   "group": "music",
+   "name": "SomaFM – Deep Space One",
+   "urls": [
+    {
+     "url": "https://ice.somafm.com/deepspaceone-256-mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/deepspaceone-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/deepspaceone",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Deep Space One",
+   "match": "deep space one"
+  },
+  {
+   "id": "soma-drone",
+   "group": "music",
+   "name": "SomaFM – Drone Zone",
+   "urls": [
+    {
+     "url": "https://ice.somafm.com/dronezone-256-mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/dronezone-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/dronezone",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Drone Zone",
+   "match": "drone zone"
+  },
+  {
+   "id": "soma-indie",
+   "group": "music",
+   "name": "SomaFM – Indie Pop Rocks",
+   "urls": [
+    {
+     "url": "https://ice.somafm.com/indiepop-256-mp3",
+     "kbps": 256,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/indiepop-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://ice.somafm.com/indiepop",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Indie Pop Rocks",
+   "match": "indie pop rocks"
+  },
+  {
+   "id": "rp-main",
+   "group": "music",
+   "name": "Radio Paradise – Main Mix",
+   "urls": [
+    {
+     "url": "https://stream.radioparadise.com/aac-320",
+     "kbps": 320,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.radioparadise.com/mp3-192",
+     "kbps": 192,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.radioparadise.com/mp3-128",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Paradise",
+   "match": "radio paradise"
+  },
+  {
+   "id": "rp-mellow",
+   "group": "music",
+   "name": "Radio Paradise – Mellow",
+   "urls": [
+    {
+     "url": "https://stream.radioparadise.com/mellow-320",
+     "kbps": 320,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.radioparadise.com/mellow-192",
+     "kbps": 192,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.radioparadise.com/mellow-128",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Paradise Mellow",
+   "match": "mellow"
+  },
+  {
+   "id": "rp-rock",
+   "group": "music",
+   "name": "Radio Paradise – Rock",
+   "urls": [
+    {
+     "url": "https://stream.radioparadise.com/rock-320",
+     "kbps": 320,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.radioparadise.com/rock-192",
+     "kbps": 192,
+     "type": "audio/mpeg"
+    },
+    {
+     "url": "https://stream.radioparadise.com/rock-128",
+     "kbps": 128,
+     "type": "audio/mpeg"
+    }
+   ],
+   "search": "Radio Paradise Rock",
+   "match": "rock"
+  }
+ ]
+}

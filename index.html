@@ -452,7 +452,8 @@
         const GROUPS = {
             sk: 'Slovenské rádiá',
             cz: 'České rádiá (alternatíva)',
-            music: 'Hudobné kanály & playlisty'
+            music: 'Hudobné kanály & playlisty',
+            new: 'Nové nájdené (overuje sa)'
         };
 
         const STVR = 'https://icecast.stv.livebox.sk/';
@@ -549,7 +550,7 @@
             const c = activeCand(st);
             if (!c) return { text: '–', low: false };
             const base = codecName(c.type) + (c.kbps ? ' ' + c.kbps + ' kbps' : '');
-            return { text: isLow(st) ? base + ' ↓' : base, low: isLow(st) };
+            return { text: (isLow(st) ? base + ' ↓' : base) + (st.castOnly ? ' · Cast' : ''), low: isLow(st) };
         }
 
         const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -679,7 +680,7 @@
             } catch (e) { /* plné úložisko – nevadí */ }
         }
         // Záložný (nižší) stream sa kontroluje častejšie, aby sa primárny s vyššou kvalitou čo najskôr vrátil
-        const isFresh = s => !!s.checkedAt && (Date.now() - s.checkedAt) < (s.ok && !isLow(s) ? HEALTH_TTL_OK : HEALTH_TTL_BAD);
+        const isFresh = s => !!s.checkedAt && !(s.castOnly && !castSession()) && (Date.now() - s.checkedAt) < (s.ok && !isLow(s) ? HEALTH_TTL_OK : HEALTH_TTL_BAD);
 
         // Skutočne skúsi stream načítať (rovnako ako ho potom prehrá prehliadač) a zistí, či dorazia zvukové dáta
         function probe(url, timeout = 9000) {
@@ -747,7 +748,8 @@
             return st._found;
         }
 
-        function markOk(st, cand) {
+        function markOk(st, cand, castOnly) {
+            st.castOnly = !!castOnly;
             st.ok = true; st.url = cand.url; st.type = cand.type; st.kbps = cand.kbps || null; st.checkedAt = Date.now();
             return { url: cand.url, type: cand.type };
         }
@@ -762,6 +764,12 @@
                 try {
                     for (const c of st.urls) {
                         if (skip.has(c.url)) continue;
+                        if (/^http:/i.test(c.url) && location.protocol === 'https:') {
+                            // HTTP stream prehliadač lokálne neprehrá. Chromecast si ho sťahuje sám, preto ho použijeme
+                            // len keď je Cast pripojený a stream overil denný skript (streams.json).
+                            if (c.verified && castSession()) return markOk(st, c, true);
+                            continue;
+                        }
                         if ((await probe(c.url)).ok) return markOk(st, c);
                     }
                     for (const c of await discover(st)) {
@@ -1043,6 +1051,7 @@
             if (typeof v === 'number') volumeRange.value = v;
             updateCastInfo();
 
+            stations.forEach(s => { if (s.urls.some(u => /^http:/i.test(u.url) && u.verified && (u.kbps || 0) > (s.kbps || 0))) s.checkedAt = 0; });
             let started = null;
             if (resumeAfterReconnect || (desired && mode !== 'cast')) {
                 resumeAfterReconnect = false;
@@ -1301,18 +1310,45 @@
         $('castCheckBtn').onclick = diagnoseCast;
         $('recheckBtn').onclick = () => checkAll(true);
 
-        loadHealth();
-        renderStreams();
-        audio.volume = parseFloat(volumeRange.value);
-        if (castDeviceName) castLabel.textContent = castDeviceName;
-        render();
-        setCastInfo('', 'Chromecast: zisťujem stav…');
+        // Ponuku denne obnovuje GitHub Action (streams.json). Ak sa nedá načítať, použije sa zoznam zabudovaný vyššie.
+        async function loadRemoteStations() {
+            try {
+                const r = await fetch('streams.json', { cache: 'no-cache', signal: AbortSignal.timeout(6000) });
+                if (!r.ok) return;
+                const j = await r.json();
+                if (!j || !Array.isArray(j.stations) || !j.stations.length) return;
+                Object.assign(GROUPS, j.groups || {});
+                const builtin = new Map(stations.map(s => [s.id, s]));
+                const rank = (a, b) => (b.kbps || 0) - (a.kbps || 0) || ((/^https:/i.test(b.url)) - (/^https:/i.test(a.url)));
+                const next = j.stations.filter(rs => rs && rs.id && rs.name && Array.isArray(rs.urls) && rs.urls.length).map(rs => {
+                    const b = builtin.get(rs.id) || {};
+                    // najvyšší bitrate prvý (primárny); ktorý reálne ide, rozhodne overenie na tomto zariadení
+                    const urls = rs.urls.map(u => ({ url: u.url, kbps: u.kbps || null, type: u.type || guessType(u.url), verified: !!u.verified })).sort(rank);
+                    return { id: rs.id, group: rs.group, name: rs.name, urls, search: b.search, match: b.match, country: b.country };
+                });
+                for (const b of stations) if (!next.some(n => n.id === b.id)) next.push(b);
+                const order = Object.keys(GROUPS);
+                next.sort((a, b) => order.indexOf(a.group) - order.indexOf(b.group));
+                stations.length = 0; stations.push(...next);
+                current = stations.find(s => s.id === current.id) || stations[0];
+            } catch (e) { console.warn('streams.json sa nepodarilo načítať, používam zabudovaný zoznam:', e); }
+        }
+
+        (async function start() {
+            await loadRemoteStations();
+            loadHealth();
+            renderStreams();
+            audio.volume = parseFloat(volumeRange.value);
+            if (castDeviceName) castLabel.textContent = castDeviceName;
+            render();
+            setCastInfo('', 'Chromecast: zisťujem stav…');
 
         // Cast sa inicializuje až teraz, keď je všetko ostatné definované
-        window.onCastApiReady = initCast;
-        if (window.__castAvailable !== undefined) initCast(window.__castAvailable);   // SDK bolo rýchlejšie ako táto stránka
+            window.onCastApiReady = initCast;
+            if (window.__castAvailable !== undefined) initCast(window.__castAvailable);   // SDK bolo rýchlejšie ako táto stránka
 
-        checkAll();      // na pozadí overí, ktoré streamy tento Chromebook vie prehrať
+            checkAll();      // na pozadí overí, ktoré streamy tento Chromebook vie prehrať
+        })();
     </script>
 </body>
 </html>
