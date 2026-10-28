@@ -1,1 +1,39 @@
+name: Obnovenie streamov
 
+on:
+  schedule:
+    - cron: '17 4 * * *'      # každý deň ~05:17 SEČ
+  workflow_dispatch:           # dá sa spustiť aj ručne (záložka Actions → Run workflow)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-streams
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Vyhľadať a overiť streamy
+        run: node scripts/update-streams.mjs
+
+      - name: Uložiť zmeny
+        run: |
+          if [ -n "$(git status --porcelain streams.json)" ]; then
+            git config user.name "igor-stream-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add streams.json
+            git commit -m "Obnovenie ponuky streamov"
+            git push
+          else
+            echo "Bez zmien."
+          fi
