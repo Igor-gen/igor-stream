@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30",
+ "generated": "2026-10-31",
  "groups": {
   "sk": "Slovenské rádiá",
   "cz": "České rádiá (alternatíva)",
@@ -13,8 +13,8 @@
    "name": "Rádio Slovensko",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://live.slovakradio.sk:8000/Slovensko_256.mp3",
@@ -48,8 +48,8 @@
    "name": "Rádio_FM",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://live.slovakradio.sk:8000/FM_256.mp3",
@@ -83,8 +83,8 @@
    "name": "Rádio Devín",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://live.slovakradio.sk:8000/Devin_256.mp3",
@@ -116,8 +116,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -127,8 +127,8 @@
    "name": "Rádio Regina",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://icecast.stv.livebox.sk/regina-ba_128.mp3",
@@ -147,7 +147,7 @@
      "fails": 0
     },
     {
-     "url": "http://icecast.stv.livebox.sk/regina-ba_128.mp3",
+     "url": "http://icecast.stv.livebox.sk/regina-bb_128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
@@ -155,7 +155,7 @@
      "fails": 0
     },
     {
-     "url": "http://icecast.stv.livebox.sk/regina-bb_128.mp3",
+     "url": "http://icecast.stv.livebox.sk/regina-ba_128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
@@ -168,8 +168,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     },
     {
      "url": "https://icecast.stv.livebox.sk/regina_ke_128.mp3",
@@ -177,8 +177,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -188,8 +188,8 @@
    "name": "Rádio Expres",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.bauermedia.sk/expres-hi.mp3",
@@ -223,8 +223,8 @@
    "name": "Európa 2",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.bauermedia.sk/europa2-hi.mp3",
@@ -250,8 +250,8 @@
    "name": "Rádio Melody",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.bauermedia.sk/melody-hi.mp3",
@@ -275,8 +275,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -286,17 +286,9 @@
    "name": "Rádio Rock",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
-    {
-     "url": "https://s2.myradiostream.com/:4870/listen.mp3",
-     "kbps": 192,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    },
     {
      "url": "https://stream.bauermedia.sk/rock-hi.mp3",
      "kbps": 128,
@@ -312,6 +304,15 @@
      "https": true,
      "verified": true,
      "fails": 0
+    },
+    {
+     "url": "https://s2.myradiostream.com/:4870/listen.mp3",
+     "kbps": 192,
+     "type": "audio/mpeg",
+     "https": true,
+     "verified": false,
+     "fails": 1,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -321,8 +322,8 @@
    "name": "Fun Rádio",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.funradio.sk:8000/chill128.mp3",
@@ -362,8 +363,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     },
     {
      "url": "https://live.funradio.sk:8000/fun128.mp3",
@@ -371,8 +372,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -382,8 +383,8 @@
    "name": "Fun Rádio Dance",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://stream.funradio.sk:8000/dance128.mp3",
@@ -401,8 +402,8 @@
    "name": "Rádio Košice",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://stream.ecce.sk:8000/radiokosice-128.mp3",
@@ -437,8 +438,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -448,8 +449,8 @@
    "name": "Rádio Vlna",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.radiovlna.sk/party-hi.mp3",
@@ -489,8 +490,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -500,8 +501,8 @@
    "name": "ČRo Radiožurnál",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://rozhlas.stream/radiozurnal_high.aac",
@@ -535,8 +536,8 @@
    "name": "ČRo Dvojka",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://rozhlas.stream/dvojka_high.aac",
@@ -570,8 +571,8 @@
    "name": "ČRo Vltava",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://rozhlas.stream/vltava_high.aac",
@@ -605,8 +606,8 @@
    "name": "ČRo Jazz",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://rozhlas.stream/jazz_high.aac",
@@ -640,8 +641,8 @@
    "name": "ČRo Radio Wave",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://rozhlas.stream/radio_wave_high.aac",
@@ -675,8 +676,8 @@
    "name": "SomaFM – Groove Salad",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://ice.somafm.com/groovesalad-256-mp3",
@@ -703,14 +704,6 @@
      "fails": 0
     },
     {
-     "url": "https://ice6.somafm.com/groovesalad-256-mp3",
-     "kbps": 256,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    },
-    {
      "url": "https://ice2.somafm.com/gsclassic-128-mp3",
      "kbps": 160,
      "type": "audio/mpeg",
@@ -725,6 +718,14 @@
      "https": true,
      "verified": true,
      "fails": 0
+    },
+    {
+     "url": "https://ice2.somafm.com/groovesalad-128-mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": true,
+     "verified": true,
+     "fails": 0
     }
    ]
   },
@@ -734,8 +735,8 @@
    "name": "SomaFM – Lush",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://ice.somafm.com/lush-128-mp3",
@@ -775,8 +776,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     },
     {
      "url": "https://ice.somafm.com/lush",
@@ -784,8 +785,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -795,8 +796,8 @@
    "name": "SomaFM – Secret Agent",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://ice.somafm.com/secretagent-128-mp3",
@@ -844,8 +845,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -855,8 +856,8 @@
    "name": "SomaFM – Deep Space One",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://ice.somafm.com/deepspaceone-128-mp3",
@@ -904,8 +905,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -915,8 +916,8 @@
    "name": "SomaFM – Drone Zone",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://ice.somafm.com/dronezone-256-mp3",
@@ -974,8 +975,8 @@
    "name": "SomaFM – Indie Pop Rocks",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://ice.somafm.com/indiepop-128-mp3",
@@ -1023,8 +1024,8 @@
      "type": "audio/mpeg",
      "https": true,
      "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
+     "fails": 4,
+     "failDate": "2026-10-31"
     }
    ]
   },
@@ -1034,8 +1035,8 @@
    "name": "Radio Paradise – Main Mix",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.radioparadise.com/rock-flac",
@@ -1093,8 +1094,8 @@
    "name": "Radio Paradise – Mellow",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://stream.radioparadise.com/mellow-flacm",
@@ -1152,8 +1153,8 @@
    "name": "Radio Paradise – Rock",
    "curated": true,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://stream.radioparadise.com/rock-flacm",
@@ -1206,51 +1207,13 @@
    ]
   },
   {
-   "id": "n-sro1-slovensko-256k",
-   "group": "new",
-   "name": "SRo1 Rádio Slovensko (256k)",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "http://live.slovakradio.sk:8000/Slovensko_256.mp3",
-     "kbps": 256,
-     "type": "audio/mpeg",
-     "https": false,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-sro1-slovensko",
-   "group": "new",
-   "name": "SRo1 Rádio Slovensko",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "http://live.slovakradio.sk:8000/Slovensko_128.mp3",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": false,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
    "id": "n-slobodny-vysielac",
    "group": "new",
    "name": "Slobodný vysielač",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://159.69.219.5:8010/mp3",
@@ -1271,73 +1234,17 @@
    ]
   },
   {
-   "id": "n-infovojna",
+   "id": "n-sro1-slovensko-256k",
    "group": "new",
-   "name": "Infovojna",
+   "name": "SRo1 Rádio Slovensko (256k)",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "http://159.69.219.5:8010/aac",
-     "kbps": 320,
-     "type": "audio/aac",
-     "https": false,
-     "verified": true,
-     "fails": 0
-    },
-    {
-     "url": "https://stream1.infovojna.com:8000/live",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
-    },
-    {
-     "url": "https://stream3.infovojna.com:8000/live",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": false,
-     "fails": 3,
-     "failDate": "2026-10-30"
-    }
-   ]
-  },
-  {
-   "id": "n-lumen",
-   "group": "new",
-   "name": "Rádio Lumen",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "http://audio.lumen.sk:8000/live128.mp3",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": false,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-sro2-regina-vychod",
-   "group": "new",
-   "name": "SRo2 Rádio Regina Východ",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "http://icecast.stv.livebox.sk/regina-ke_128.mp3",
-     "kbps": 128,
+     "url": "http://live.slovakradio.sk:8000/Slovensko_256.mp3",
+     "kbps": 256,
      "type": "audio/mpeg",
      "https": false,
      "verified": true,
@@ -1348,11 +1255,11 @@
   {
    "id": "n-vlna-oldies-party",
    "group": "new",
-   "name": "RÁDIO VLNA OLDIES PARTY",
+   "name": "Rádio Vlna Oldies Party",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream.radiovlna.sk/party-hi.mp3",
@@ -1365,16 +1272,16 @@
    ]
   },
   {
-   "id": "n-fun-80-90",
+   "id": "n-sro2-regina-vychod",
    "group": "new",
-   "name": "FUN RÁDIO 80-90",
+   "name": "SRo2 Rádio Regina Východ",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "http://stream.funradio.sk:8000/80-90-128.mp3",
+     "url": "http://icecast.stv.livebox.sk/regina-ke_128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
@@ -1384,44 +1291,17 @@
    ]
   },
   {
-   "id": "n-sro3-devin",
+   "id": "n-sro1-slovensko",
    "group": "new",
-   "name": "SRo3: Rádio Devín",
+   "name": "SRo1 Rádio Slovensko",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "http://icecast.stv.livebox.sk/devin_128.mp3",
+     "url": "http://live.slovakradio.sk:8000/Slovensko_128.mp3",
      "kbps": 128,
-     "type": "audio/mpeg",
-     "https": false,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-detske",
-   "group": "new",
-   "name": "Detské Rádio",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "http://stream.21.sk/detskeradio-192.mp3",
-     "kbps": null,
-     "type": "audio/mpeg",
-     "https": false,
-     "verified": true,
-     "fails": 0
-    },
-    {
-     "url": "http://stream.21.sk/detskeradio-128.mp3",
-     "kbps": null,
      "type": "audio/mpeg",
      "https": false,
      "verified": true,
@@ -1435,8 +1315,8 @@
    "name": "SRo8 Rádio Litera",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://icecast.stv.livebox.sk/litera_128.mp3",
@@ -1449,35 +1329,16 @@
    ]
   },
   {
-   "id": "n-fit-family",
+   "id": "n-lumen",
    "group": "new",
-   "name": "Fit family Radio",
-   "curated": false,
-   "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
-   "urls": [
-    {
-     "url": "https://solid67.streamupsolutions.com/proxy/reqsithw/stream",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-sro2-regina-zapad",
-   "group": "new",
-   "name": "SRo2 Rádio Regina Západ",
+   "name": "Rádio Lumen",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "http://icecast.stv.livebox.sk/regina-ba_128.mp3",
+     "url": "http://audio.lumen.sk:8000/live128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
@@ -1487,16 +1348,16 @@
    ]
   },
   {
-   "id": "n-vlna-classic-rock",
+   "id": "n-fun-80-90",
    "group": "new",
-   "name": "Rádio Vlna CLASSIC ROCK",
+   "name": "Fun Radio 80&90",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "http://stream.radiovlna.sk:8000/rock-hi.mp3",
+     "url": "http://stream.funradio.sk:8000/80-90-128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
@@ -1511,8 +1372,8 @@
    "name": "SRo2 Rádio Regina Stred",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://icecast.stv.livebox.sk/regina-bb_128.mp3",
@@ -1525,35 +1386,16 @@
    ]
   },
   {
-   "id": "n-vlna-60-70",
+   "id": "n-sro2-regina-zapad",
    "group": "new",
-   "name": "RÁDIO VLNA 60-70",
+   "name": "SRo2 Rádio Regina Západ",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "https://stream.radiovlna.sk/gold-hi.mp3",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-sro9-junior",
-   "group": "new",
-   "name": "SRo9 Rádio Junior",
-   "curated": false,
-   "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
-   "urls": [
-    {
-     "url": "http://live.slovakradio.sk:8000/Junior_128.mp3",
+     "url": "http://icecast.stv.livebox.sk/regina-ba_128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
@@ -1568,125 +1410,11 @@
    "name": "Fun Radio  Chill",
    "curated": false,
    "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
-   "urls": [
-    {
-     "url": "https://stream.funradio.sk:8000/chill128.mp3",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-vlna-golden-hits",
-   "group": "new",
-   "name": "Rádio Vlna Golden hits",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "https://stream.radiovlna.sk/gold-hi.mp3",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-folk",
-   "group": "new",
-   "name": "Rádio Folk",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "https://mpc1.mediacp.eu/stream/demo2",
-     "kbps": 192,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-zabava",
-   "group": "new",
-   "name": "Radio Zabava",
-   "curated": false,
-   "firstSeen": "2026-10-29",
-   "lastOkDate": "2026-10-30",
+   "lastOkDate": "2026-10-31",
    "okDays": 2,
    "urls": [
     {
-     "url": "https://stream.zeno.fm/eyac00cx1nhvv",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-trnavske",
-   "group": "new",
-   "name": "Trnavské Rádio",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "https://solid33.streamupsolutions.com/proxy/mujdmamw/trnavske",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-hitradio-slovakia",
-   "group": "new",
-   "name": "Hitrádio Slovakia",
-   "curated": false,
-   "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
-   "urls": [
-    {
-     "url": "https://hitradioslovakia.stream.laut.fm/hitradioslovakia",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-best-fm",
-   "group": "new",
-   "name": "RÁDIO BEST FM",
-   "curated": false,
-   "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
-   "urls": [
-    {
-     "url": "https://stream3.bestfm.sk:8000/128.mp3",
+     "url": "https://stream.funradio.sk:8000/chill128.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": true,
@@ -1701,8 +1429,8 @@
    "name": "SRo9 Rádio Junior (256k)",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "http://live.slovakradio.sk:8000/Junior_256.mp3",
@@ -1715,19 +1443,19 @@
    ]
   },
   {
-   "id": "n-party-mix",
+   "id": "n-basavel",
    "group": "new",
-   "name": "Party Mix Radio",
+   "name": "Radio Basavel",
    "curated": false,
-   "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "http://stream.zeno.fm/rw6ckefezs8uv",
+     "url": "https://stream.zeno.fm/6gd9c6yn4nhvv",
      "kbps": 128,
      "type": "audio/mpeg",
-     "https": false,
+     "https": true,
      "verified": true,
      "fails": 0
     }
@@ -1739,8 +1467,8 @@
    "name": "BestFM",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
      "url": "https://stream3.bestfm.sk:8000/160.aac",
@@ -1761,57 +1489,312 @@
    ]
   },
   {
-   "id": "n-kiks-ceskoslovensko",
+   "id": "n-vlna-classic-rock",
    "group": "new",
-   "name": "Radio KIKS Československo",
-   "curated": false,
-   "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
-   "urls": [
-    {
-     "url": "https://online.radiokiks.sk:8000/kiks_czsk.mp3",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-basavel",
-   "group": "new",
-   "name": "Radio Basavel",
+   "name": "RÁDIO VLNA Classic Rock",
    "curated": false,
    "firstSeen": "2026-10-28",
-   "lastOkDate": "2026-10-30",
-   "okDays": 3,
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
    "urls": [
     {
-     "url": "https://stream.zeno.fm/6gd9c6yn4nhvv",
-     "kbps": 128,
-     "type": "audio/mpeg",
-     "https": true,
-     "verified": true,
-     "fails": 0
-    }
-   ]
-  },
-  {
-   "id": "n-jazz",
-   "group": "new",
-   "name": "Rádio Jazz",
-   "curated": false,
-   "firstSeen": "2026-10-30",
-   "lastOkDate": "2026-10-30",
-   "okDays": 1,
-   "urls": [
-    {
-     "url": "http://stream.sepia.sk:8000/jazz128.mp3",
+     "url": "http://stream.radiovlna.sk:8000/rock-hi.mp3",
      "kbps": 128,
      "type": "audio/mpeg",
      "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-infovojna",
+   "group": "new",
+   "name": "Infovojna",
+   "curated": false,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
+   "urls": [
+    {
+     "url": "http://159.69.219.5:8010/aac",
+     "kbps": 320,
+     "type": "audio/aac",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-zabava",
+   "group": "new",
+   "name": "Radio Zabava",
+   "curated": false,
+   "firstSeen": "2026-10-29",
+   "lastOkDate": "2026-10-31",
+   "okDays": 3,
+   "urls": [
+    {
+     "url": "https://stream.zeno.fm/eyac00cx1nhvv",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": true,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-sro9-junior",
+   "group": "new",
+   "name": "SRo9 Rádio Junior",
+   "curated": false,
+   "firstSeen": "2026-10-30",
+   "lastOkDate": "2026-10-31",
+   "okDays": 2,
+   "urls": [
+    {
+     "url": "http://live.slovakradio.sk:8000/Junior_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-sro3-devin",
+   "group": "new",
+   "name": "SRo3: Rádio Devín",
+   "curated": false,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
+   "urls": [
+    {
+     "url": "http://icecast.stv.livebox.sk/devin_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-trnavske",
+   "group": "new",
+   "name": "Trnavské Rádio",
+   "curated": false,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
+   "urls": [
+    {
+     "url": "https://solid33.streamupsolutions.com/proxy/mujdmamw/trnavske",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": true,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-detske",
+   "group": "new",
+   "name": "Detské Rádio",
+   "curated": false,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
+   "urls": [
+    {
+     "url": "http://stream.21.sk/detskeradio-192.mp3",
+     "kbps": null,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    },
+    {
+     "url": "http://stream.21.sk/detskeradio-128.mp3",
+     "kbps": null,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-vlna-60-70",
+   "group": "new",
+   "name": "RÁDIO VLNA 60-70",
+   "curated": false,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
+   "urls": [
+    {
+     "url": "https://stream.radiovlna.sk/gold-hi.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": true,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-vlna-golden-hits",
+   "group": "new",
+   "name": "Rádio Vlna Golden hits",
+   "curated": false,
+   "firstSeen": "2026-10-28",
+   "lastOkDate": "2026-10-31",
+   "okDays": 4,
+   "urls": [
+    {
+     "url": "https://stream.radiovlna.sk/gold-hi.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": true,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-bb-fm",
+   "group": "new",
+   "name": "BB FM rádio",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "http://stream.bbfm.sk/bbfm128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-sro4-fm",
+   "group": "new",
+   "name": "SRo4 Rádio FM",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "http://live.slovakradio.sk:8000/FM_256.mp3",
+     "kbps": 256,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-ceskoslovenske",
+   "group": "new",
+   "name": "Československé radio",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "http://live.topradio.cz:8000/csradio128",
+     "kbps": 192,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-funradio-milenialky",
+   "group": "new",
+   "name": "Funrádio Mileniálky",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "http://stream.funradio.sk:8000/milenialky128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-fun-cz",
+   "group": "new",
+   "name": "Fun Radio CZ",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "http://stream.funradio.sk:8000/cs128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": false,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-relax-international",
+   "group": "new",
+   "name": "Rádio Relax International",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "https://stream.relaxfm.ee/international",
+     "kbps": 96,
+     "type": "audio/aac",
+     "https": true,
+     "verified": true,
+     "fails": 0
+    }
+   ]
+  },
+  {
+   "id": "n-regina-zapad",
+   "group": "new",
+   "name": "Rádio Regina Západ",
+   "curated": false,
+   "firstSeen": "2026-10-31",
+   "lastOkDate": "2026-10-31",
+   "okDays": 1,
+   "urls": [
+    {
+     "url": "https://icecast.stv.livebox.sk/regina-ba_128.mp3",
+     "kbps": 128,
+     "type": "audio/mpeg",
+     "https": true,
      "verified": true,
      "fails": 0
     }
